@@ -117,7 +117,7 @@
             </div>
 
             <div class="nav-right">
-                <a href="#" class="nav-link">Donate</a>
+                <a href="#" class="nav-link">About Us</a>
                 <a href="#" class="nav-link">Log in</a>
                 <a href="#" class="signup-btn">Sign up</a>
             </div>
