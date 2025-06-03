@@ -68,7 +68,7 @@
             color: #1a2e4f;
         }
 
-        /* Right nav links */
+        
         .nav-right .nav-link {
             margin-right: 15px;
             color: #1a73e8;
