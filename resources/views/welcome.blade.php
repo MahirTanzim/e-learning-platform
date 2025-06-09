@@ -16,7 +16,7 @@
         }
 
         .hero-btn {
-            background-color: #fdb813;
+            background-color: #13cefd;
             color: #000;
             font-weight: bold;
             border: none;
@@ -40,11 +40,11 @@
                 <a class="navbar-brand" href="#">
                     <img src="{{ asset('assets/images/logo.png') }}" alt="AcademiaBD" height="35">
                 </a>
-                <h2>AcademiaBD</h2>
+                <h2 class="mr-5">AcademiaBD</h2>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
                     <span class="navbar-toggler-icon"></span>
                 </button>
-                <div class="collapse navbar-collapse ml-5" id="navMenu" >
+                <div class="collapse navbar-collapse " id="navMenu" >
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item"><a class="nav-link active" href="#">HOME</a></li>
                         <li class="nav-item dropdown">
@@ -88,7 +88,7 @@
                         right to your fingertips. Learn in Bangla or English — at your own pace, from the comfort of
                         your home.
                     </p>
-                    <button class="hero-btn">Browse All</button>
+                    <button class="hero-btn">See More --></button>
                 </div>
                 <div class="col-lg-6 text-center bor">
                     <img src="{{asset("assets/images/Hero.jpg")}}" alt="Hero" class="rounded-circle">
