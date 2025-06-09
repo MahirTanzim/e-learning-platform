@@ -1,131 +1,102 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <style>
-        body {
-            margin: 0;
-            font-family: Arial, sans-serif;
-        }
-
-        .navbar {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 10px 30px;
-            border-bottom: 1px solid #ccc;
-        }
-
-        .nav-left,
-        .nav-center,
-        .nav-right {
-            display: flex;
-            align-items: center;
-        }
-
-
-        .dropbtn {
-            background: none;
-            border: none;
-            font-size: 16px;
-            color: #1a73e8;
-            cursor: pointer;
-            font-weight: bold;
-        }
-
-
-        .search-container {
-            position: relative;
-            margin-left: 15px;
-        }
-
-        .search-container input {
-            padding: 8px 30px 8px 10px;
-            border: 1px solid #ccc;
-            border-radius: 6px;
-            font-size: 14px;
-        }
-
-        .search-icon {
-            position: absolute;
-            right: 10px;
-            top: 8px;
-            font-size: 16px;
-            color: #1a73e8;
-        }
-
-        .logo {
-            height: 25px;
-            margin-right: 8px;
-        }
-
-        .brand {
-            font-size: 18px;
-            font-weight: bold;
-            color: #1a2e4f;
-        }
-
-        
-        .nav-right .nav-link {
-            margin-right: 15px;
-            color: #1a73e8;
-            text-decoration: none;
-            font-weight: 500;
-        }
-
-        .signup-btn {
-            background-color: #1a73e8;
-            color: white;
-            padding: 8px 14px;
-            border-radius: 6px;
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .nav-link:hover {
-            color: #1a2e4f;
-            cursor: pointer;
-        }
-    </style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Welcome Page</title>
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+    }
+    
+    .nav-link.active {
+      border-bottom: 2px solid #fdb813;
+    }
+    .hero-btn {
+      background-color: #fdb813;
+      color: #000;
+      font-weight: bold;
+      border: none;
+      padding: 10px 20px;
+      border-radius: 5px;
+    }
+    .hero-btn:hover {
+      background-color: #e6a700;
+    }
+  </style>
 </head>
 
 <body>
-    <header>
-        <nav class="navbar">
-            <div class="nav-left">
-                <div class="dropdown">
-                    <button class="dropbtn">Explore ▼</button>
+  <header>
 
-                    <div class="dropdown-content">
-                        <a href="#">Math</a>
-                        <a href="#">Science</a>
-                    </div>
-                </div>
-                <div class="search-container">
-                    <input type="text" placeholder="Search" />
-                    <span class="search-icon">🔍</span>
-                </div>
-            </div>
 
-            <div class="nav-center">
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg shadow-sm">
+    <div class="container justify-content-around">
+      <a class="navbar-brand" href="#">
+        <img src="{{ asset('assets/images/logo.png') }}" alt="AcademiaBD" height="35">
+      </a>
+      <h2>AcademiaBD</h2>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navMenu">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navMenu">
+        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+          <li class="nav-item"><a class="nav-link active" href="#">HOME</a></li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">COURSES</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Course 1</a></li>
+              <li><a class="dropdown-item" href="#">Course 2</a></li>
+            </ul>
+          </li>
+          <li class="nav-item dropdown">
+            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">FEATURES</a>
+            <ul class="dropdown-menu">
+              <li><a class="dropdown-item" href="#">Feature 1</a></li>
+              <li><a class="dropdown-item" href="#">Feature 2</a></li>
+            </ul>
+          </li>
+          <li class="nav-item"><a class="nav-link" href="#">BECOME AN INSTRUCTOR</a></li>
+          <li class="nav-item"><a class="nav-link" href="#">BLOG</a></li>
+        </ul>
+        <div class="d-flex align-items-center">
+          <a href="#" class="me-3 text-dark">Register</a>
+          <a href="#" class="me-3 text-dark">Login</a>
+          <a href="#" class="me-3 text-dark position-relative">
+            🛒
+            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">0</span>
+          </a>
+          <a href="#"><i class="bi bi-search"></i></a>
+        </div>
+      </div>
+    </div>
+  </nav>
+  </header>
+  
 
-                <img class="logo" src="resources\views\images\wqer.png" alt="">
-                <span class="brand">joy Bangla Academy</span>
-            </div>
 
-            <div class="nav-right">
-                <a href="#" class="nav-link">About Us</a>
-                <a href="#" class="nav-link">Log in</a>
-                <a href="#" class="signup-btn">Sign up</a>
-            </div>
-        </nav>
-    </header>
-    <main></main>
-    <footer></footer>
-    <h1>joy bangla</h1>
+  <main>
+    <section class="container py-5">
+    <div class="row align-items-center">
+      <div class="col-lg-6">
+        <h1 class="fw-bold mb-4">Start shaping your future learning online!</h1>
+        <p class="mb-4">
+          Goedu online Courses, your best choice to find the best online courses in Bangladesh 
+          <strong>Now officially GEAC accredited.</strong> Learn at your convenience. 
+          Quality professional courses with certificates and varieties of topics.
+        </p>
+        <button class="hero-btn">Browse All</button>
+      </div>
+      <div class="col-lg-6 text-center">
+        <img src="your-hero-image.png" alt="Hero" class="img-fluid">
+      </div>
+    </div>
+  </section>
+  </main>
+  
+
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
-
 </html>
