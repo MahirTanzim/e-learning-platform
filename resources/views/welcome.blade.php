@@ -32,9 +32,7 @@
 
 <body>
     <header>
-
-
-        <!-- Navbar -->
+        
         <nav class="navbar navbar-expand-lg shadow-sm">
             <div class="container justify-content-around">
                 <a class="navbar-brand" href="#">
@@ -60,8 +58,8 @@
                         <li class="nav-item"><a class="nav-link" href="#">BLOG</a></li>
                     </ul>
                     <div class="d-flex align-items-center">
-                        <a href="#" class="me-3 text-dark">Register</a>
-<a href="{{ route('login') }}" class="me-3 text-dark">Login</a>
+                        <a href="{{ route('register') }}" class="me-3 text-dark">Register</a>
+                        <a href="{{ route('login') }}" class="me-3 text-dark">Login</a>
                         <a href="#" class="me-3 text-dark position-relative">
                             🛒
                             <span

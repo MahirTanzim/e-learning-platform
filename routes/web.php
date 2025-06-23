@@ -22,3 +22,27 @@ Route::post('/login', function (Request $request) {
     }
     return back()->with('error', 'Invalid credentials.');
 });
+
+Route::get('/register', function () {
+    return view('register');
+})->name('register');
+
+Route::post('/register', function (Request $request) {
+    $validated = $request->validate([
+        'name' => 'required|string|max:255',
+        'email' => 'required|email|unique:users,email',
+        'password' => 'required|string|min:6|confirmed',
+    ]);
+
+    $user = \App\Models\User::create([
+        'name' => $validated['name'],
+        'email' => $validated['email'],
+        'password' => bcrypt($validated['password']),
+    ]);
+
+    Auth::login($user);
+    $request->session()->regenerate();
+
+    return redirect()->intended('/');
+});
+
