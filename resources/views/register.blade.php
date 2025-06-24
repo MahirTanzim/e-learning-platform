@@ -42,7 +42,6 @@
 </head>
 <body>
     <header>
-        <!-- Navbar -->
         <nav class="navbar navbar-expand-lg shadow-sm">
             <div class="container justify-content-around">
                 <a class="navbar-brand" href="#">
@@ -104,6 +103,13 @@
                     <label for="password_confirmation" class="form-label">Confirm Password</label>
                     <input type="password" class="form-control" id="password_confirmation" name="password_confirmation" required placeholder="Re-enter your password">
                 </div>
+                <div class="mb-4">
+                    <label for="role" class="form-label">Register As</label>
+                    <select class="form-select" id="role" name="role" required>
+                        <option value="student">Student</option>
+                        <option value="teacher">Teacher</option>
+                    </select>
+                </div>
                 <button type="submit" class="btn btn-primary w-100 mt-2">Register</button>
             </form>
             <div class="text-center mt-3">
@@ -113,5 +119,6 @@
             <a href="{{ url('/') }}" class="btn btn-link w-100 mt-2">← Back to Home</a>
         </div>
     </main>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>

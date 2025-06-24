@@ -86,7 +86,7 @@
                         <li class="mb-2">💰 Earn money from your courses</li>
                         <li class="mb-2">📈 Become more Popular</li>
                     </ul>
-                    <a href="{{ route('register') }}" class="hero-btn">Start Teaching Now →</a>
+                    <a href="{{ route('register') }}" class="hero-btn">Drop Your Application →</a>
                 </div>
                 <div class="col-lg-6 text-center">
                     <img src="{{ asset('assets/images/become-teacher.jpg') }}" alt="Become a Teacher" class="img-fluid rounded-circle shadow" style="max-width: 350px;">
