@@ -1,4 +1,3 @@
-
 <html lang="en">
 <head>
     <meta charset="UTF-8" />
@@ -72,7 +71,7 @@
                         <li class="nav-item"><a class="nav-link" href="#">BLOG</a></li>
                     </ul>
                     <div class="d-flex align-items-center">
-                        <a href="#" class="me-3 text-dark">Register</a>
+                        <a href="{{ route('register') }}" class="me-3 text-dark">Register</a>
                         <a href="{{ route('login') }}" class="me-3 text-dark">Login</a>
                         <a href="#" class="me-3 text-dark position-relative">
                             🛒
@@ -98,7 +97,8 @@
                     <input type="email" class="form-control" id="email" name="email" required autofocus placeholder="Enter your email">
                 </div>
                 <div class="mb-3">
-                    <label for="password" class="form-label">Password
+                    <label for="password" class="form-label">
+                        Password
                         <a href="#" class="forgot-link text-decoration-none text-primary">Forgot?</a>
                     </label>
                     <input type="password" class="form-control" id="password" name="password" required placeholder="Enter your password">
@@ -107,9 +107,10 @@
             </form>
             <div class="text-center mt-3">
                 <span class="text-muted">Don't have an account?</span>
-                <a href="#" class="text-primary text-decoration-none">Register</a>
+                <a href="{{ route('register') }}" class="text-primary text-decoration-none">Register</a>
             </div>
             <a href="{{ url('/') }}" class="btn btn-link w-100 mt-2">← Back to Home</a>
         </div>
     </main>
 </body>
+</html>
