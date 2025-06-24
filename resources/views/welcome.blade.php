@@ -54,7 +54,8 @@
                             </ul>
                         </li>
                         
-                        <li class="nav-item"><a class="nav-link" href="#">BECOME A TEACHER</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('become.teacher') }}">BECOME A TEACHER</a></li>
+
                         <li class="nav-item"><a class="nav-link" href="{{ route('blog') }}">BLOG</a></li>
                     </ul>
                     <div class="d-flex align-items-center">
