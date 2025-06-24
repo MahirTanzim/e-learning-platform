@@ -78,13 +78,13 @@
                 <div class="col-lg-6">
                     <h2 class="fw-bold mb-4">Become a Teacher on AcademiaBD</h2>
                     <p class="mb-3">
-                        Share your skills with thousands of eager learners across Bangladesh. As a teacher at AcademiaBD, you’ll have the platform, tools, and freedom to teach in your own way — anytime, anywhere.
+                        Share your skills with thousands of eager learners across Bangladesh. As a teacher at AcademiaBD, you’ll have the platform, tools, and freedom to teach in your own way anytime, anywhere.
                     </p>
                     <ul class="mb-4 benefit-list">
                         <li class="mb-2">📚 Teach topics you're passionate about</li>
-                        <li class="mb-2">💻 Flexible schedule — work remotely</li>
+                        <li class="mb-2">💻 Flexible schedule  work remotely</li>
                         <li class="mb-2">💰 Earn money from your courses</li>
-                        <li class="mb-2">📈 Grow your personal brand and audience</li>
+                        <li class="mb-2">📈 Become more Popular</li>
                     </ul>
                     <a href="{{ route('register') }}" class="hero-btn">Start Teaching Now →</a>
                 </div>
