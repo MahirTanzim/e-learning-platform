@@ -60,6 +60,7 @@
                     <div class="d-flex align-items-center">
                         <a href="{{ route('register') }}" class="me-3 text-dark">Register</a>
                         <a href="{{ route('login') }}" class="me-3 text-dark">Login</a>
+                        
                         <a href="#" class="me-3 text-dark position-relative">
                             🛒
                             <span

@@ -52,4 +52,6 @@ Route::post('/register', function (Request $request) {
 
     return redirect()->intended('/');
 });
-
+Route::get('/become-a-teacher', function () {
+    return view('become-teacher');
+})->name('become.teacher');
