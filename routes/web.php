@@ -8,6 +8,13 @@ Route::get('/', function () {
     return view('welcome');
 });
 
+// ...existing code...
+
+Route::get('/blog', function () {
+    return view('blog');
+})->name('blog');
+
+// ...existing code...
 // Show login form
 Route::get('/login', function () {
     return view('login');
