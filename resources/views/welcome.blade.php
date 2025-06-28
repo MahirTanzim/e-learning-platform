@@ -52,7 +52,9 @@
                                 <li><a class="dropdown-item" href="{{ route('courses.mathematics') }}">Mathematics</a></li>
                                 <li><a class="dropdown-item" aria-current="page" href="{{ route('courses.physics') }}">Physics</a></li>
                                 <li><a class="dropdown-item" href="{{ route('courses.chemistry') }}">Chemistry</a></li>
+                                <li><a class="dropdown-item">Biology</a></li>
                             </ul>
+                    
                         </li>
                         
                         <li class="nav-item"><a class="nav-link" href="{{ route('become.teacher') }}">BECOME A TEACHER</a></li>
