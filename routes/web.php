@@ -55,3 +55,7 @@ Route::post('/register', function (Request $request) {
 Route::get('/become-a-teacher', function () {
     return view('become-teacher');
 })->name('become.teacher');
+
+Route::get('/courses/physics', function () {
+    return view('courses.physics'); // This would load a Blade view named 'physics.blade.php' inside a 'courses' directory
+})->name('courses.physics');
