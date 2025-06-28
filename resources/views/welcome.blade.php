@@ -49,12 +49,9 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown">COURSES</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="#">Mathematics</a></li>
-                                <li><a href="{{ route('courses.physics') }}">Physics</a></li>
-                                <li><a href="{{ route('courses.chemistry') }}">Chemistry</a></li>
-                                <li><a class="dropdown-item" href="#">Biology</a></li>
-                                <li><a class="dropdown-item" href="#">Computer Science</a></li>
-                                <li><a class="dropdown-item" href="#">English</a></li>
+                                <li><a class="dropdown-item" href="{{ route('courses.mathematics') }}">Mathematics</a></li>
+                                <li><a class="dropdown-item" aria-current="page" href="{{ route('courses.physics') }}">Physics</a></li>
+                                <li><a class="dropdown-item" href="{{ route('courses.chemistry') }}">Chemistry</a></li>
                             </ul>
                         </li>
                         

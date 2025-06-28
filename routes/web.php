@@ -64,3 +64,7 @@ Route::get('/courses/physics', function () {
 Route::get('/courses/chemistry', function () {
     return view('courses.chemistry'); 
 })->name('courses.chemistry');
+
+Route::get('/courses/mathematics', function () {
+    return view('courses.mathematics');
+})->name('courses.mathematics');
