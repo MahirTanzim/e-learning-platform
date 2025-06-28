@@ -50,8 +50,8 @@
                                 data-bs-toggle="dropdown">COURSES</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Mathematics</a></li>
-                                <li><a class="dropdown-item active" aria-current="page" href="{{ route('courses.physics') }}">Physics</a></li>
-                                <li><a class="dropdown-item" href="#">Chemistry</a></li>
+                                <li><a href="{{ route('courses.physics') }}">Physics</a></li>
+                                <li><a href="{{ route('courses.chemistry') }}">Chemistry</a></li>
                                 <li><a class="dropdown-item" href="#">Biology</a></li>
                                 <li><a class="dropdown-item" href="#">Computer Science</a></li>
                                 <li><a class="dropdown-item" href="#">English</a></li>

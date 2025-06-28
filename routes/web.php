@@ -57,5 +57,10 @@ Route::get('/become-a-teacher', function () {
 })->name('become.teacher');
 
 Route::get('/courses/physics', function () {
-    return view('courses.physics'); // This would load a Blade view named 'physics.blade.php' inside a 'courses' directory
+    return view('courses.physics');
 })->name('courses.physics');
+
+
+Route::get('/courses/chemistry', function () {
+    return view('courses.chemistry'); 
+})->name('courses.chemistry');
