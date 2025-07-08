@@ -98,6 +98,153 @@
                 </div>
             </div>
         </section>
+
+        <section class="container my-5">
+            <div class="row justify-content-center">
+                <div class="col-md-8">
+                    <form action="" method="GET" class="input-group">
+                        <input type="text" name="query" class="form-control" placeholder="Search courses, topics, or teachers..." aria-label="Search" required>
+                        <button class="btn btn-primary" type="submit">Search</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+
+        <!-- ...existing code... -->
+
+<section class="container my-5">
+    <h2 class="text-center fw-bold mb-5" style="color: #14213d;">Explore the Best Professional Online Courses in Bangladesh</h2>
+    <div class="row g-4">
+        <!-- Course Card 1 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="https://yourdomain.com/path/blockchain.jpg" class="card-img-top" alt="Blockchain and Cryptocurrency">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Blockchain and Cryptocurrency Basic Knowledge</h5>
+                    <div class="mb-2 text-secondary small">
+                        <span class="me-3">৳ 300</span>
+                        <span class="me-3"><i class="bi bi-clock"></i> 1.5 hr</span>
+                        <span><i class="bi bi-award"></i> Certification</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-secondary small">Rating</span>
+                        <span class="ms-2 text-warning">
+                            ★★★★★
+                        </span>
+                    </div>
+                    <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                </div>
+            </div>
+        </div>
+        <!-- Course Card 2 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="https://yourdomain.com/path/camtasia.jpg" class="card-img-top" alt="Camtasia Advanced Video Editing">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Camtasia Advanced Video Editing With Custom Effects & Animations</h5>
+                    <div class="mb-2 text-secondary small">
+                        <span class="me-3">৳ 300</span>
+                        <span class="me-3"><i class="bi bi-clock"></i> 12 hr</span>
+                        <span><i class="bi bi-award"></i> Certification</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-secondary small">Rating</span>
+                        <span class="ms-2 text-warning">
+                            ★★★★★
+                        </span>
+                    </div>
+                    <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                </div>
+            </div>
+        </div>
+        <!-- Course Card 3 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="https://yourdomain.com/path/career.jpg" class="card-img-top" alt="Career Progression">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Unlocking the Secret to Successful Career Progression</h5>
+                    <div class="mb-2 text-secondary small">
+                        <span class="me-3">৳ 300</span>
+                        <span class="me-3"><i class="bi bi-clock"></i> 2 hr</span>
+                        <span><i class="bi bi-award"></i> Certification</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-secondary small">Rating</span>
+                        <span class="ms-2 text-warning">
+                            ★★★★★
+                        </span>
+                    </div>
+                    <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                </div>
+            </div>
+        </div>
+        <!-- Course Card 4 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="https://yourdomain.com/path/metaverse.jpg" class="card-img-top" alt="Metaverse Professional">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Metaverse: Professional Certificate Course</h5>
+                    <div class="mb-2 text-secondary small">
+                        <span class="me-3">৳ 300</span>
+                        <span class="me-3"><i class="bi bi-clock"></i> 1.5 hr</span>
+                        <span><i class="bi bi-award"></i> Certification</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-secondary small">Rating</span>
+                        <span class="ms-2 text-warning">
+                            ★★★★★
+                        </span>
+                    </div>
+                    <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                </div>
+            </div>
+        </div>
+        <!-- Course Card 5 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="https://yourdomain.com/path/ai-income.jpg" class="card-img-top" alt="AI Income Streams">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Leveraging AI to Generate Income Streams Online Course</h5>
+                    <div class="mb-2 text-secondary small">
+                        <span class="me-3">৳ 300</span>
+                        <span class="me-3"><i class="bi bi-clock"></i> 7.5 hr</span>
+                        <span><i class="bi bi-award"></i> Certification</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-secondary small">Rating</span>
+                        <span class="ms-2 text-warning">
+                            ★★★★★
+                        </span>
+                    </div>
+                    <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                </div>
+            </div>
+        </div>
+        <!-- Course Card 6 -->
+        <div class="col-md-6 col-lg-4">
+            <div class="card shadow-sm h-100">
+                <img src="https://yourdomain.com/path/employability.jpg" class="card-img-top" alt="Employability Skills">
+                <div class="card-body">
+                    <h5 class="card-title fw-bold">Developing Your Employability Skills For Sustainable Career</h5>
+                    <div class="mb-2 text-secondary small">
+                        <span class="me-3">৳ 300</span>
+                        <span class="me-3"><i class="bi bi-clock"></i> 5.5 hr</span>
+                        <span><i class="bi bi-award"></i> Certification</span>
+                    </div>
+                    <div class="mb-2">
+                        <span class="text-secondary small">Rating</span>
+                        <span class="ms-2 text-warning">
+                            ★★★★★
+                        </span>
+                    </div>
+                    <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ...existing code... -->
     </main>
 
 
