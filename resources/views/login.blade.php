@@ -113,5 +113,16 @@
             <a href="{{ url('/') }}" class="btn btn-link w-100 mt-2">← Back to Home</a>
         </div>
     </main>
+    <footer class="bg-black text-white py-3">
+    <div class="container text-center">
+        <img src="{{ asset('assets/images/logo.png') }}" alt="AcademiaBD" height="28" class="mb-2">
+        <p class="mb-1 small">© {{ date('Y') }} AcademiaBD. All rights reserved.</p>
+        <p class="mb-0 small">
+            <a href="mailto:info@academiabd.com" class="text-white text-decoration-none">info@academiabd.com</a> |
+            <a href="tel:+880123456789" class="text-white text-decoration-none">+880 1234 56789</a>
+        </p>
+    </div>
+</footer>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
