@@ -31,6 +31,16 @@
             height: 200px;
             object-fit: cover;
         }
+        .course-card {
+            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: transform 0.3s ease;
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            transition: transform 0.3s ease;
+        }
     </style>
 </head>
 
@@ -130,7 +140,7 @@
             <div class="row g-4">
                 <!-- Course Card 1 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm h-100">
+                    <div class="card course-card shadow-sm h-100">
                         <img src="{{ asset('assets/images/organic_chemistry.jpg') }}" class="card-img-top course-image"
                             alt="Organic Chemistry">
                         <div class="card-body">
@@ -154,7 +164,7 @@
                 </div>
                 <!-- Course Card 2 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm h-100">
+                    <div class="card course-card shadow-sm h-100">
                         <img src="{{ asset('assets/images/physical_chemistry.jpg') }}"
                             class="card-img-top course-image" alt="Physical Chemistry">
                         <div class="card-body">
@@ -178,7 +188,7 @@
                 </div>
                 <!-- Course Card 3 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm h-100">
+                    <div class="card course-card shadow-sm h-100">
                         <img src="{{ asset('assets/images/algebra.jpg') }}" class="card-img-top course-image" alt="Algebra Course">
                             
                         <div class="card-body">
@@ -186,7 +196,7 @@
                                                         <p class="card-text text-muted">Understand the core principles of algebra with step-by-step guidance.</p>
                             <div class="mb-2 text-secondary small">
                                 <span class="me-3">৳ 1300</span>
-                                <span class="me-3"><i class="bi bi-clock"></i> 2 hr</span>
+                                <span class="me-3"><i class="bi bi-clock"></i> 12 hr</span>
                                 <span><i class="bi bi-award"></i> Certification</span>
                             </div>
                             <div class="mb-2">
@@ -201,13 +211,15 @@
                 </div>
                 <!-- Course Card 4 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm h-100">
+                    <div class="card course-card shadow-sm h-100">
                         <img src="{{ asset('assets/images/classical_mechanics.jpg') }}" class="card-img-top course-image" alt="Classical Mechanics Course">
                         <div class="card-body">
+                            
                             <h5 class="card-title fw-bold">Classical Mechanics Fundamentals</h5>
+                                                        <p class="card-text text-muted">Master the basics of motion, forces, and energy. Suitable for beginners.</p>
                             <div class="mb-2 text-secondary small">
-                                <span class="me-3">৳ 300</span>
-                                <span class="me-3"><i class="bi bi-clock"></i> 1.5 hr</span>
+                                <span class="me-3">৳ 1000</span>
+                                <span class="me-3"><i class="bi bi-clock"></i> 15 hr</span>
                                 <span><i class="bi bi-award"></i> Certification</span>
                             </div>
                             <div class="mb-2">
@@ -222,14 +234,15 @@
                 </div>
                 <!-- Course Card 5 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm h-100">
-                        <img src="https://yourdomain.com/path/ai-income.jpg" class="card-img-top"
-                            alt="AI Income Streams">
+                    <div class="card course-card shadow-sm h-100">
+                        <img src="{{ asset('assets/images/electromagnetism.jpg') }}" class="card-img-top course-image" alt="Electromagnetism Course">
                         <div class="card-body">
-                            <h5 class="card-title fw-bold">Leveraging AI to Generate Income Streams Online Course</h5>
+                            <h5 class="card-title fw-bold">Electromagnetism: From Theory to Application</h5>
+                                                        <p class="card-text text-muted">Dive deep into electric and magnetic fields, and their interactions.</p>
+
                             <div class="mb-2 text-secondary small">
-                                <span class="me-3">৳ 300</span>
-                                <span class="me-3"><i class="bi bi-clock"></i> 7.5 hr</span>
+                                <span class="me-3">৳ 3000</span>
+                                <span class="me-3"><i class="bi bi-clock"></i> 17.5 hr</span>
                                 <span><i class="bi bi-award"></i> Certification</span>
                             </div>
                             <div class="mb-2">
@@ -244,15 +257,14 @@
                 </div>
                 <!-- Course Card 6 -->
                 <div class="col-md-6 col-lg-4">
-                    <div class="card shadow-sm h-100">
-                        <img src="https://yourdomain.com/path/employability.jpg" class="card-img-top"
-                            alt="Employability Skills">
+                    <div class="card course-card shadow-sm h-100">
+                        <img src="{{ asset('assets/images/electromagnetism.jpg') }}" class="card-img-top course-image" alt="Electromagnetism Course">
                         <div class="card-body">
-                            <h5 class="card-title fw-bold">Developing Your Employability Skills For Sustainable Career
-                            </h5>
+                            <h5 class="card-title fw-bold">Introduction to Genetics and Evolution</h5>
+                            <p class="card-text text-muted">Explore the principles of genetics and the process of evolution.
                             <div class="mb-2 text-secondary small">
-                                <span class="me-3">৳ 300</span>
-                                <span class="me-3"><i class="bi bi-clock"></i> 5.5 hr</span>
+                                <span class="me-3">৳ 3000</span>
+                                <span class="me-3"><i class="bi bi-clock"></i> 12 hr</span>
                                 <span><i class="bi bi-award"></i> Certification</span>
                             </div>
                             <div class="mb-2">
