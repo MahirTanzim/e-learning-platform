@@ -81,20 +81,20 @@
 
     <main>
         <section class="container py-5">
-            <div class="row align-items-center ">
-                <div class="col-lg-6">
-                    <h2 class="fw-bold mb-4">Learn Anytime, Anywhere – Empowering Bangladesh Through Education</h2>
-                    <p class="mb-4">
-                        Welcome to <strong>AcademiaBD</strong>, your trusted online learning platform designed for
-                        students across Bangladesh. Whether you're in school, college, or preparing for competitive
-                        exams, we bring expert instructors, interactive courses, video tutorials, notes, and quizzes
-                        right to your fingertips. Learn in Bangla or English — at your own pace, from the comfort of
-                        your home.
-                    </p>
-                    <button class="hero-btn">See More --></button>
+            <div class="row align-items-center flex-lg-row flex-column-reverse">
+                <div class="col-lg-6 text-center mb-4 mb-lg-0">
+                    <img src="{{ asset('assets/images/Hero.jpg') }}" alt="Hero" class="img-fluid rounded-4 shadow" style="max-width: 400px;">
                 </div>
-                <div class="col-lg-6 text-center bor">
-                    <img src="{{asset("assets/images/Hero.jpg")}}" alt="Hero" class="rounded-circle">
+                <div class="col-lg-6 d-flex flex-column justify-content-center">
+                    <span class="badge bg-warning text-dark mb-3 px-3 py-2 fs-6" style="width: fit-content;">Empowering Bangladesh</span>
+                    <h1 class="fw-bold mb-3 display-5">Learn Anytime, Anywhere</h1>
+                    <p class="mb-4 fs-5 text-secondary">
+                        Welcome to <strong>AcademiaBD</strong> — your gateway to quality online education. Access expert-led courses, interactive lessons, and quizzes in Bangla or English. Study at your pace, from anywhere in Bangladesh.
+                    </p>
+                    <div>
+                        <a href="#courses" class="hero-btn me-3">Browse Courses</a>
+                        <a href="{{ route('register') }}" class="btn btn-outline-primary fw-bold px-4">Get Started</a>
+                    </div>
                 </div>
             </div>
         </section>
