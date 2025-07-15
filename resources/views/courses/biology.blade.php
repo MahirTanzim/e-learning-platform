@@ -9,7 +9,7 @@
 
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
         <nav class="navbar navbar-expand-lg shadow-sm bg-white">
             <div class="container justify-content-around">
@@ -55,7 +55,7 @@
         </nav>
     </header>
 
-    <footer class="bg-black text-white py-3">
+    <footer class="bg-black text-white py-3 mt-auto">
         <div class="container text-center">
             <img src="{{ asset('assets/images/logo.png') }}" alt="AcademiaBD" height="28" class="mb-2">
             <p class="mb-1 small">© {{ date('Y') }} AcademiaBD. All rights reserved.</p>

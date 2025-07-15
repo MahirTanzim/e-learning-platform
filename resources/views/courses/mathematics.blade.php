@@ -9,7 +9,7 @@
     <link rel="stylesheet" href="{{ asset('assets/styles/mathematics.css') }}">
 </head>
 
-<body>
+<body class="d-flex flex-column min-vh-100">
     <header>
         <nav class="navbar navbar-expand-lg shadow-sm bg-white">
             <div class="container justify-content-around">
@@ -44,7 +44,7 @@
         </nav>
     </header>
 
-    <main class="container">
+    <main class="flex-grow-1">
         <div class="course-header">
             <h1 class="display-5 fw-bold text-primary">Mathematics Courses</h1>
             <p class="text-muted lead">Learn to master numbers, patterns, and problem-solving.</p>
@@ -96,7 +96,7 @@
         </section>
     </main>
 
-    <footer class="bg-black text-white py-3">
+    <footer class="bg-black text-white py-3 mt-auto">
         <div class="container text-center">
             <img src="{{ asset('assets/images/logo.png') }}" alt="AcademiaBD" height="28" class="mb-2">
             <p class="mb-1 small">© {{ date('Y') }} AcademiaBD. All rights reserved.</p>
