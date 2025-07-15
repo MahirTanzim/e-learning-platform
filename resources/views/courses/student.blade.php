@@ -69,12 +69,12 @@
                     type="button" role="tab">Dashboard</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile"
-                    type="button" role="tab">Profile</button>
+                <button class="nav-link" id="profile-tab" data-bs-toggle="tab" data-bs-target="#profile" type="button"
+                    role="tab">Profile</button>
             </li>
             <li class="nav-item" role="presentation">
-                <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses"
-                    type="button" role="tab">Courses</button>
+                <button class="nav-link" id="courses-tab" data-bs-toggle="tab" data-bs-target="#courses" type="button"
+                    role="tab">Courses</button>
             </li>
             <li class="nav-item" role="presentation">
                 <button class="nav-link" id="messages-tab" data-bs-toggle="tab" data-bs-target="#messages"
@@ -122,7 +122,8 @@
                     @csrf
                     <div class="mb-3">
                         <label>Name</label>
-                        <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}" required>
+                        <input type="text" class="form-control" name="name" value="{{ Auth::user()->name }}"
+                            required>
                     </div>
                     <div class="mb-3">
                         <label>Email</label>
@@ -138,15 +139,16 @@
                 <h3 class="section-title">📚 My Courses</h3>
                 <div class="row">
                     @foreach ($courses as $course)
-                    <div class="col-md-4 mb-4">
-                        <div class="card h-100">
-                            <div class="card-body">
-                                <h5>{{ $course->title }}</h5>
-                                <p class="text-muted">{{ Str::limit($course->description, 100) }}</p>
-                                <a href="{{ route('courses.show', $course->id) }}" class="btn btn-custom">View Course</a>
+                        <div class="col-md-4 mb-4">
+                            <div class="card h-100">
+                                <div class="card-body">
+                                    <h5>{{ $course->title }}</h5>
+                                    <p class="text-muted">{{ Str::limit($course->description, 100) }}</p>
+                                    <a href="{{ route('courses.show', $course->id) }}" class="btn btn-custom">View
+                                        Course</a>
+                                </div>
                             </div>
                         </div>
-                    </div>
                     @endforeach
                 </div>
             </div>
@@ -155,13 +157,13 @@
             <div class="tab-pane fade" id="messages" role="tabpanel">
                 <h3 class="section-title">📬 Notifications & Messages</h3>
                 @forelse ($messages as $msg)
-                <div class="alert alert-info">
-                    <strong>{{ $msg->title }}</strong><br>
-                    {{ $msg->body }}
-                    <small class="d-block text-muted mt-1">{{ $msg->created_at->diffForHumans() }}</small>
-                </div>
+                    <div class="alert alert-info">
+                        <strong>{{ $msg->title }}</strong><br>
+                        {{ $msg->body }}
+                        <small class="d-block text-muted mt-1">{{ $msg->created_at->diffForHumans() }}</small>
+                    </div>
                 @empty
-                <p class="text-muted">No messages yet.</p>
+                    <p class="text-muted">No messages yet.</p>
                 @endforelse
             </div>
 
@@ -169,17 +171,17 @@
             <div class="tab-pane fade" id="progress" role="tabpanel">
                 <h3 class="section-title">📈 Course Progress</h3>
                 @foreach ($courses as $course)
-                <div class="mb-4">
-                    <div class="d-flex justify-content-between">
-                        <strong>{{ $course->title }}</strong>
-                        <span>{{ $course->progress }}%</span>
-                    </div>
-                    <div class="progress">
-                        <div class="progress-bar" role="progressbar" style="width: {{ $course->progress }}%;"
-                            aria-valuenow="{{ $course->progress }}" aria-valuemin="0" aria-valuemax="100">
+                    <div class="mb-4">
+                        <div class="d-flex justify-content-between">
+                            <strong>{{ $course->title }}</strong>
+                            <span>{{ $course->progress }}%</span>
+                        </div>
+                        <div class="progress">
+                            <div class="progress-bar" role="progressbar" style="width: {{ $course->progress }}%;"
+                                aria-valuenow="{{ $course->progress }}" aria-valuemin="0" aria-valuemax="100">
+                            </div>
                         </div>
                     </div>
-                </div>
                 @endforeach
             </div>
 
