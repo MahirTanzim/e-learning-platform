@@ -6,44 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chemistry Courses - AcademiaBD</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-            font-family: Arial, sans-serif;
-        }
-
-        .course-header {
-            text-align: center;
-            padding: 3rem 1rem 1rem;
-            background-color: #fff;
-            border-bottom: 1px solid #e9ecef;
-        }
-
-        .course-section {
-            padding: 3rem 0;
-        }
-
-        .course-card {
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .course-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .course-image {
-            height: 200px;
-            object-fit: cover;
-            width: 100%;
-        }
-
-        .nav-link.active-course {
-            border-bottom: 2px solid #fdb813;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/styles/chemistry.css') }}">
 </head>
 
 <body>

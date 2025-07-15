@@ -6,32 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Become a Teacher</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .nav-link.active {
-            border-bottom: 2px solid #fdb813;
-        }
-
-        .hero-btn {
-            background-color: #13cefd;
-            color: #000;
-            font-weight: bold;
-            border: none;
-            padding: 10px 20px;
-            border-radius: 5px;
-        }
-
-        .hero-btn:hover {
-            background-color: #e6a700;
-        }
-
-        .benefit-list li::marker {
-            color: #13cefd;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/styles/become-teacher.css') }}">
 </head>
 
 <body class="d-flex flex-column min-vh-100">

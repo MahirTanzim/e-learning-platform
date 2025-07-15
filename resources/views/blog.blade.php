@@ -6,32 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Blog - AcademiaBD</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background-color: #f8f9fa;
-        }
-
-        .blog-header {
-            text-align: center;
-            padding: 3rem 1rem 1rem;
-        }
-
-        .blog-card {
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
-            border-radius: 16px;
-            overflow: hidden;
-            transition: transform 0.3s ease;
-        }
-
-        .blog-card:hover {
-            transform: translateY(-5px);
-        }
-
-        .blog-image {
-            height: 200px;
-            object-fit: cover;
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/styles/blog.css') }}">
 </head>
 
 <body class="d-flex flex-column min-vh-100">

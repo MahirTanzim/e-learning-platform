@@ -6,56 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Student Portal</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-        body {
-            background: linear-gradient(120deg, #f0f8ff, #e8f0fe);
-            font-family: 'Segoe UI', sans-serif;
-        }
-
-        .section-title {
-            color: #14213d;
-            font-weight: 700;
-            margin-bottom: 1.5rem;
-        }
-
-        .card {
-            border-radius: 15px;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
-        }
-
-        .progress-bar {
-            background-color: #13cefd;
-        }
-
-        .btn-custom {
-            background-color: #13cefd;
-            color: #fff;
-            font-weight: 600;
-        }
-
-        .btn-custom:hover {
-            background-color: #10bce0;
-        }
-
-        .nav-tabs .nav-link.active {
-            background-color: #13cefd;
-            color: white;
-            font-weight: bold;
-        }
-
-        .nav-tabs .nav-link {
-            border: none;
-            color: #333;
-        }
-
-        .tab-content {
-            background-color: #fff;
-            padding: 2rem;
-            border-radius: 15px;
-            margin-top: 1rem;
-            box-shadow: 0 4px 24px rgba(0, 0, 0, 0.05);
-        }
-    </style>
+    <link rel="stylesheet" href="{{ asset('assets/styles/student.css') }}">
 </head>
 
 <body class="py-5">
