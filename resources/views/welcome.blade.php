@@ -44,7 +44,7 @@
     </style>
 </head>
 
-<body>
+<bod class="d-flex flex-column min-vh-100">
     <header>
 
         <nav class="navbar navbar-expand-lg shadow-sm">
@@ -94,7 +94,7 @@
 
 
 
-    <main>
+    <main class="flex-grow-1">
         <section class="container-fluid py-5" style="background: linear-gradient(90deg, #e0f7fa 0%, #fdf6e3 100%); border-radius: 0 0 40px 40px;">
             <div class="container">
             <div class="row align-items-center flex-lg-row flex-column-reverse">
@@ -134,7 +134,7 @@
 
         <!-- ...existing code... -->
 
-        <section class="container my-5"> 
+        <section class="container my-5">
             <h2 class="text-center fw-bold mb-5" style="color: #14213d;">Explore the Best Professional Online Courses in
             Bangladesh</h2>
             <div class="row g-4">
@@ -194,7 +194,7 @@
             <div class="col-md-6 col-lg-4">
                 <div class="card course-card shadow-sm h-100">
                 <img src="{{ asset('assets/images/algebra.jpg') }}" class="card-img-top course-image" alt="Algebra Course">
-                    
+
                 <div class="card-body">
                     <h5 class="card-title fw-bold text-truncate" style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
                     Algebra Basics
@@ -294,7 +294,7 @@
     </main>
     <!-- Footer Section -->
 
-<footer class="bg-black text-white py-3">
+<footer class="bg-black text-white py-3 mt-auto">
     <div class="container text-center">
         <img src="{{ asset('assets/images/logo.png') }}" alt="AcademiaBD" height="28" class="mb-2">
         <p class="mb-1 small">© {{ date('Y') }} AcademiaBD. All rights reserved.</p>
