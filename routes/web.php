@@ -77,13 +77,4 @@ Route::get('/courses/biology', function () {
     return view('courses.biology');
 })->name('courses.biology');
 
-return view('student-portal', [
-    'courses' => Auth::user()->courses, // or Course::all() for test
-    'messages' => Message::where('user_id', Auth::id())->latest()->get(),
-]);
 
-use App\Http\Controllers\TeacherPortalController;
-
-Route::middleware(['auth'])->group(function () {
-    Route::get('/teacher-portal', [TeacherPortalController::class, 'index'])->name('teacher.portal');
-});
