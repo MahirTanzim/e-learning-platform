@@ -62,12 +62,13 @@ Route::get('/courses/physics', function () {
 
 
 Route::get('/courses/chemistry', function () {
-    return view('courses.chemistry'); 
+    return view('courses.chemistry');
 })->name('courses.chemistry');
 
-Route::get('/courses/mathematics', function () {
-    return view('courses.mathematics');
-})->name('courses.mathematics');
+use App\Http\Controllers\CourseController;
+
+Route::get('/courses/mathematics', [CourseController::class, 'mathematics'])->name('courses.mathematics');
+
 
 Route::get('/courses/english', function () {
     return view('courses.english');
