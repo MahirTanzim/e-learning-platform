@@ -110,3 +110,11 @@
 </body>
 
 </html>
+Statistics & Probability
+App\Models\Course::create([
+    'title' => 'Statistics & Probability',
+    'description' => 'Understand the core principles of algebra with step-by-step guidance.',
+    'level' => 'Beginner',
+    'image' => 'assets/images/algebra.jpg',
+    'category' => 'Mathematics'
+]);
