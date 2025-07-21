@@ -14,10 +14,11 @@ class CreateCoursesTable extends Migration
             $table->text('description');
             $table->string('level');
             $table->string('image');
+            
             $table->timestamps();
         });
     }
-    
+
 
     public function down()
     {

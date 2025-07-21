@@ -52,47 +52,30 @@
 
         <section class="course-section">
             <h2 class="mb-4 text-center">Featured Math Courses</h2>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card course-card">
-                        <img src="{{ asset('assets/images/algebra.jpg') }}" class="card-img-top course-image"
-                            alt="Algebra Course">
-                        <div class="card-body">
-                            <h5 class="card-title">Algebra Basics</h5>
-                            <p class="card-text text-muted">Understand the core principles of algebra with step-by-step
-                                guidance.</p>
-                            <span class="badge bg-info text-dark mb-2">Beginner</span>
-                            <a href="#" class="btn btn-primary w-100 mt-2">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card course-card">
-                        <img src="{{ asset('assets/images/calculus.jpg') }}" class="card-img-top course-image"
-                            alt="Calculus Course">
-                        <div class="card-body">
-                            <h5 class="card-title">Introduction to Calculus</h5>
-                            <p class="card-text text-muted">Explore limits, derivatives, and integrals in this
-                                beginner-friendly course.</p>
-                            <span class="badge bg-warning text-dark mb-2">Intermediate</span>
-                            <a href="#" class="btn btn-primary w-100 mt-2">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-md-6 col-lg-4">
-                    <div class="card course-card">
-                        <img src="{{ asset('assets/images/statistics.jpg') }}" class="card-img-top course-image"
-                            alt="Statistics Course">
-                        <div class="card-body">
-                            <h5 class="card-title">Statistics & Probability</h5>
-                            <p class="card-text text-muted">Learn how to interpret and analyze data for real-world
-                                insights.</p>
-                            <span class="badge bg-danger mb-2">Advanced</span>
-                            <a href="#" class="btn btn-primary w-100 mt-2">Enroll Now</a>
-                        </div>
-                    </div>
+
+               <div class="row g-4">
+    @foreach($courses as $course)
+        <div class="col-md-6 col-lg-4">
+            <div class="card course-card">
+                <img src="{{ asset($course->image) }}" class="card-img-top course-image" alt="{{ $course->title }}">
+                <div class="card-body">
+                    <h5 class="card-title">{{ $course->title }}</h5>
+                    <p class="card-text text-muted">{{ $course->description }}</p>
+                    <span class="badge
+                        @if($course->level == 'Beginner') bg-info text-dark
+                        @elseif($course->level == 'Intermediate') bg-warning text-dark
+                        @elseif($course->level == 'Advanced') bg-danger
+                        @else bg-secondary
+                        @endif
+                        mb-2">
+                        {{ $course->level }}
+                    </span>
+                    <a href="{{ route('courses.purchase', ['id' => $course->id]) }}" class="btn btn-primary w-100 mt-2">Enroll Now</a>
                 </div>
             </div>
+        </div>
+    @endforeach
+</div>
         </section>
     </main>
 
@@ -110,11 +93,3 @@
 </body>
 
 </html>
-Statistics & Probability
-App\Models\Course::create([
-    'title' => 'Statistics & Probability',
-    'description' => 'Understand the core principles of algebra with step-by-step guidance.',
-    'level' => 'Beginner',
-    'image' => 'assets/images/algebra.jpg',
-    'category' => 'Mathematics'
-]);

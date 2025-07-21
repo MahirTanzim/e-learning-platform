@@ -79,3 +79,13 @@ Route::get('/courses/biology', function () {
 })->name('courses.biology');
 
 
+use App\Models\Course;
+
+Route::get('/courses/purchase/{id}', function ($id) {
+    $course = Course::findOrFail($id);
+    return view('courses.purchase', compact('course'));
+})->name('courses.purchase');
+
+Route::get('/purchase-success', function () {
+    return view('purchase-success');
+})->name('purchase.success');
