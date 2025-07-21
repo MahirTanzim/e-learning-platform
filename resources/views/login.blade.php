@@ -112,6 +112,17 @@
 
                     <form method="POST" action="{{ route('login') }}">
                         @csrf
+                        
+                        <div class="form-group">
+                            <label for="role" class="form-label">Login As</label>
+                            <select class="form-control" id="role" name="role" required>
+                                <option value="">Select Your Role</option>
+                                <option value="student">Student</option>
+                                <option value="teacher">Teacher</option>
+                                <option value="admin">Admin</option>
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="email" class="form-label">Email Address</label>
                             <input type="email" class="form-control" id="email" name="email" required autofocus

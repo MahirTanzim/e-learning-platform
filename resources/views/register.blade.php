@@ -112,6 +112,16 @@
 
                     <form method="POST" action="{{ route('register') }}">
                         @csrf
+                        
+                        <div class="form-group">
+                            <label for="role" class="form-label">Register As</label>
+                            <select class="form-control" id="role" name="role" required>
+                                <option value="">Select Your Role</option>
+                                <option value="student">Student</option>
+                                <option value="teacher">Teacher</option>
+                            </select>
+                        </div>
+
                         <div class="form-group">
                             <label for="name" class="form-label">Full Name</label>
                             <input type="text" class="form-control" id="name" name="name" required autofocus

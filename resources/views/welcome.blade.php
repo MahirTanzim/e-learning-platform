@@ -9,9 +9,8 @@
     <link rel="stylesheet" href="{{ asset('assets/styles/welcome.css') }}">
 </head>
 
-<bod class="d-flex flex-column min-vh-100">
+<body class="d-flex flex-column min-vh-100">
     <header>
-
         <nav class="navbar navbar-expand-lg shadow-sm">
             <div class="container justify-content-around">
                 <a class="navbar-brand" href="#">
@@ -37,15 +36,31 @@
                             </ul>
 
                         </li>
-
                         <li class="nav-item"><a class="nav-link" href="{{ route('become.teacher') }}">BECOME A
                                 TEACHER</a></li>
 
                         <li class="nav-item"><a class="nav-link" href="{{ route('blog') }}">BLOG</a></li>
                     </ul>
                     <div class="d-flex align-items-center">
-                        <a href="{{ route('register') }}" class="me-3 text-dark">Register</a>
-                        <a href="{{ route('login') }}" class="me-3 text-dark">Login</a>
+                        @auth
+                            <!-- Show user info and logout if logged in -->
+                            <span class="me-3 text-dark">Welcome, {{ Auth::user()->name }}</span>
+                            @if((Auth::user()->role ?? '') === 'admin')
+                                <a href="{{ route('admin.dashboard') }}" class="me-3 text-dark">Admin Panel</a>
+                            @elseif((Auth::user()->role ?? '') === 'teacher')
+                                <a href="{{ route('teacher.dashboard') }}" class="me-3 text-dark">Teacher Dashboard</a>
+                            @else
+                                <a href="{{ route('student.dashboard') }}" class="me-3 text-dark">Student Dashboard</a>
+                            @endif
+                            <form method="POST" action="{{ route('logout') }}" class="d-inline">
+                                @csrf
+                                <button type="submit" class="btn btn-link text-dark p-0">Logout</button>
+                            </form>
+                        @else
+                            <!-- Show login/register if not logged in -->
+                            <a href="{{ route('register') }}" class="me-3 text-dark">Register</a>
+                            <a href="{{ route('login') }}" class="me-3 text-dark">Login</a>
+                        @endauth
 
                         <a href="#" class="me-3 text-dark position-relative">
                             🛒
@@ -58,8 +73,6 @@
             </div>
         </nav>
     </header>
-
-
 
     <main class="flex-grow-1">
         <section class="container-fluid py-5"
@@ -84,8 +97,11 @@
                         </p>
                         <div>
                             <a href="#courses" class="hero-btn me-3 shadow-sm px-4 py-2">Browse Courses</a>
-                            <a href="{{ route('register') }}"
-                                class="btn btn-outline-primary fw-bold px-4 py-2 shadow-sm">Get Started</a>
+                            @auth
+                                <a href="{{ route('student.dashboard') }}" class="btn btn-outline-primary fw-bold px-4 py-2 shadow-sm">Go to Dashboard</a>
+                            @else
+                                <a href="{{ route('register') }}" class="btn btn-outline-primary fw-bold px-4 py-2 shadow-sm">Get Started</a>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -104,9 +120,7 @@
             </div>
         </section>
 
-        <!-- ...existing code... -->
-
-        <section class="container my-5">
+        <section class="container my-5" id="courses">
             <h2 class="text-center fw-bold mb-5" style="color: #14213d;">Explore the Best Professional Online Courses in
                 Bangladesh</h2>
             <div class="row g-4">
@@ -133,7 +147,11 @@
                                     ★★★★★
                                 </span>
                             </div>
-                            <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                            @auth
+                                <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                            @else
+                                <a href="{{ route('login') }}" class="btn btn-warning w-100 fw-bold">Login to Enrol</a>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -160,26 +178,29 @@
                                     ★★★★★
                                 </span>
                             </div>
-                            <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                            @auth
+                                <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                            @else
+                                <a href="{{ route('login') }}" class="btn btn-warning w-100 fw-bold">Login to Enrol</a>
+                            @endauth
                         </div>
                     </div>
                 </div>
                 <!-- Course Card 3 -->
                 <div class="col-md-6 col-lg-4">
                     <div class="card course-card shadow-sm h-100">
-                        <img src="{{ asset('assets/images/algebra.jpg') }}" class="card-img-top course-image"
-                            alt="Algebra Course">
-
+                        <img src="{{ asset('assets/images/biology_basics.jpg') }}" class="card-img-top course-image"
+                            alt="Biology Course">
                         <div class="card-body">
                             <h5 class="card-title fw-bold text-truncate"
                                 style="white-space: nowrap; overflow: hidden; text-overflow: ellipsis;">
-                                Algebra Basics
+                                Biology Fundamentals for Beginners
                             </h5>
-                            <p class="card-text text-muted">Understand the core principles of algebra with step-by-step
-                                guidance.</p>
+                            <p class="card-text text-muted">Learn the basic concepts of biology, cell structure, and
+                                genetics.</p>
                             <div class="mb-2 text-secondary small">
                                 <span class="me-3">৳ 1300</span>
-                                <span class="me-3"><i class="bi bi-clock"></i> 12 hr</span>
+                                <span class="me-3"><i class="bi bi-clock"></i> 10 hr</span>
                                 <span><i class="bi bi-award"></i> Certification</span>
                             </div>
                             <div class="mb-2">
@@ -188,7 +209,11 @@
                                     ★★★★★
                                 </span>
                             </div>
-                            <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                            @auth
+                                <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                            @else
+                                <a href="{{ route('login') }}" class="btn btn-warning w-100 fw-bold">Login to Enrol</a>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -215,7 +240,11 @@
                                     ★★★★★
                                 </span>
                             </div>
-                            <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                            @auth
+                                <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                            @else
+                                <a href="{{ route('login') }}" class="btn btn-warning w-100 fw-bold">Login to Enrol</a>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -242,7 +271,11 @@
                                     ★★★★★
                                 </span>
                             </div>
-                            <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                            @auth
+                                <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                            @else
+                                <a href="{{ route('login') }}" class="btn btn-warning w-100 fw-bold">Login to Enrol</a>
+                            @endauth
                         </div>
                     </div>
                 </div>
@@ -269,16 +302,17 @@
                                     ★★★★★
                                 </span>
                             </div>
-                            <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                            @auth
+                                <a href="#" class="btn btn-warning w-100 fw-bold">Enrol Now</a>
+                            @else
+                                <a href="{{ route('login') }}" class="btn btn-warning w-100 fw-bold">Login to Enrol</a>
+                            @endauth
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
-        <!-- ...existing code... -->
     </main>
-    <!-- Footer Section -->
 
     <footer class="bg-black text-white py-3 mt-auto">
         <div class="container text-center">
@@ -290,7 +324,8 @@
             </p>
         </div>
     </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
-    </body>
+</body>
 
 </html>
