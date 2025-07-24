@@ -45,18 +45,18 @@ Route::get('/login', function () {
 Route::post('/login', function (Request $request) {
     $credentials = $request->only('email', 'password');
     $role = $request->input('role');
-    
+
     if (Auth::attempt($credentials)) {
         $user = Auth::user();
-        
+
         // Check if the user's role matches the selected role
         if ($user->role !== $role) {
             Auth::logout();
             return back()->with('error', 'Invalid role selected for this account.');
         }
-        
+
         $request->session()->regenerate();
-        
+
         // Redirect based on role
         switch ($user->role) {
             case 'admin':
@@ -69,7 +69,7 @@ Route::post('/login', function (Request $request) {
                 return redirect()->intended('/');
         }
     }
-    
+
     return back()->with('error', 'Invalid credentials.');
 });
 
@@ -115,21 +115,21 @@ Route::post('/logout', function (Request $request) {
 
 // Protected routes using existing RoleMiddleware
 Route::middleware(['auth'])->group(function () {
-    
+
     // Student routes
     Route::middleware([\App\Http\Middleware\RoleMiddleware::class.':student'])->group(function () {
         Route::get('/student/dashboard', function () {
             return view('courses.student');
         })->name('student.dashboard');
     });
-    
+
     // Teacher routes
     Route::middleware([\App\Http\Middleware\RoleMiddleware::class.':teacher'])->group(function () {
         Route::get('/teacher/dashboard', function () {
             return view('teacher');
         })->name('teacher.dashboard');
     });
-    
+
     // Admin routes
     Route::middleware([\App\Http\Middleware\RoleMiddleware::class.':admin'])->group(function () {
         Route::get('/admin/dashboard', function () {
@@ -137,3 +137,15 @@ Route::middleware(['auth'])->group(function () {
         })->name('admin.dashboard');
     });
 });
+Route::get('/courses/{id}/purchase', [CourseController::class, 'purchase'])->name('courses.purchase');
+
+
+
+
+
+
+Route::get('/purchase/{id}', [CourseController::class, 'purchase'])->name('purchase.course');
+
+Route::get('/purchase-success', function () {
+    return view('purchase-success');
+})->name('purchase.success');

@@ -9,15 +9,21 @@ class CourseController extends Controller
 {
     public function mathematics()
 {
-    $courses = Course::all();
+    $courses = Course::where('subject', 'mathematics')->get();
 
     return view('courses.mathematics', compact('courses'));
 }
 
-    public function showBySubject($subject)
+    public function showSubject($subject)
 {
-    $courses = Course::where('subject', $subject)->get();
+    $courses = Course::where('subject', ucfirst($subject))->get();
     return view('courses.subject', compact('courses', 'subject'));
 }
+
+public function purchase($id)
+    {
+        $course = Course::findOrFail($id);
+        return view('courses.purchase', compact('course'));
+    }
 
 }

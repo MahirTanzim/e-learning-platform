@@ -5,11 +5,11 @@ use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration {
-    public function up(): void
+    public function up()
     {
         Schema::table('courses', function (Blueprint $table) {
-            $table->string('subject')->after('level');
-        });
+            $table->string('subject')->default('General');
+    });
     }
 
     public function down(): void
