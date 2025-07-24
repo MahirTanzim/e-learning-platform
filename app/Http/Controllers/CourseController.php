@@ -14,4 +14,10 @@ class CourseController extends Controller
     return view('courses.mathematics', compact('courses'));
 }
 
+    public function showBySubject($subject)
+{
+    $courses = Course::where('subject', $subject)->get();
+    return view('courses.subject', compact('courses', 'subject'));
+}
+
 }
