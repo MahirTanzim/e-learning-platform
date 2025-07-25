@@ -62,54 +62,25 @@
         </div>
 
         <section class="course-section">
-            <h2 class="mb-4 text-center">Featured Physics Courses</h2>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card course-card">
-                        {{-- Image for Classical Mechanics --}}
-                        <img src="{{ asset('assets/images/classical_mechanics.jpg') }}"
-                            class="card-img-top course-image" alt="Classical Mechanics Course">
-                        <div class="card-body">
-                            <h5 class="card-title">Classical Mechanics Fundamentals</h5>
-                            <p class="card-text text-muted">Master the basics of motion, forces, and energy. Suitable
-                                for beginners.</p>
-                            <span class="badge bg-info text-dark mb-2">Beginner</span>
-                            <a href="#" class="btn btn-primary w-100 mt-2">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card course-card">
-                        {{-- Image for Electromagnetism --}}
-                        <img src="{{ asset('assets/images/electromagnetism.jpg') }}" class="card-img-top course-image"
-                            alt="Electromagnetism Course">
-                        <div class="card-body">
-                            <h5 class="card-title">Electromagnetism: From Theory to Application</h5>
-                            <p class="card-text text-muted">Dive deep into electric and magnetic fields, and their
-                                interactions.</p>
-                            <span class="badge bg-warning text-dark mb-2">Intermediate</span>
-                            <a href="#" class="btn btn-primary w-100 mt-2">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card course-card">
-                        {{-- Image for Quantum Physics --}}
-                        <img src="{{ asset('assets/images/quantum_physics.jpg') }}" class="card-img-top course-image"
-                            alt="Quantum Physics Course">
-                        <div class="card-body">
-                            <h5 class="card-title">Introduction to Quantum Physics</h5>
-                            <p class="card-text text-muted">Unravel the mysteries of the quantum world. Advanced
-                                concepts explained.</p>
-                            <span class="badge bg-danger mb-2">Advanced</span>
-                            <a href="#" class="btn btn-primary w-100 mt-2">Enroll Now</a>
-                        </div>
+    <h2 class="mb-4 text-center">Featured Physics Courses</h2>
+    <div class="row g-4">
+        @forelse ($courses as $course)
+            <div class="col-md-6 col-lg-4">
+                <div class="card course-card">
+                    <img src="{{ asset($course->image) }}" class="card-img-top course-image" alt="{{ $course->title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $course->title }}</h5>
+                        <p class="card-text text-muted">{{ $course->description }}</p>
+                        <span class="badge bg-secondary mb-2">{{ ucfirst($course->level) ?? 'N/A' }}</span>
+                        <a href="{{ route('courses.purchase', ['id' => $course->id]) }}" class="btn btn-primary w-100 mt-2">Enroll Now</a>
                     </div>
                 </div>
             </div>
-        </section>
+        @empty
+            <p class="text-center text-muted">No physics courses available at the moment.</p>
+        @endforelse
+    </div>
+</section>
     </main>
 
     <footer class="bg-black text-white py-3 mt-auto">

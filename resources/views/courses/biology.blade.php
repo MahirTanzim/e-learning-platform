@@ -4,9 +4,9 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chemistry Courses - AcademiaBD</title>
+    <title>Biology Courses - AcademiaBD</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet">
-
+    <link rel="stylesheet" href="{{ asset('assets/styles/biology.css') }}">
 </head>
 
 <body class="d-flex flex-column min-vh-100">
@@ -27,17 +27,14 @@
                             <a class="nav-link dropdown-toggle" href="#" role="button"
                                 data-bs-toggle="dropdown">COURSES</a>
                             <ul class="dropdown-menu">
-                                <li><a class="dropdown-item" href="{{ route('courses.mathematics') }}">Mathematics</a>
-                                </li>
+                                <li><a class="dropdown-item" href="{{ route('courses.mathematics') }}">Mathematics</a></li>
                                 <li><a class="dropdown-item" href="{{ route('courses.physics') }}">Physics</a></li>
                                 <li><a class="dropdown-item" href="{{ route('courses.chemistry') }}">Chemistry</a></li>
-                                <li><a class="dropdown-item active" href="{{ route('courses.biology') }}">Biology</a>
-                                </li>
+                                <li><a class="dropdown-item active" href="{{ route('courses.biology') }}">Biology</a></li>
                                 <li><a class="dropdown-item" href="{{ route('courses.english') }}">English</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('become.teacher') }}">BECOME A
-                                TEACHER</a></li>
+                        <li class="nav-item"><a class="nav-link" href="{{ route('become.teacher') }}">BECOME A TEACHER</a></li>
                         <li class="nav-item"><a class="nav-link" href="{{ route('blog') }}">BLOG</a></li>
                     </ul>
                     <div class="d-flex align-items-center">
@@ -45,8 +42,7 @@
                         <a href="{{ route('login') }}" class="me-3 text-dark">Login</a>
                         <a href="#" class="me-3 text-dark position-relative">
                             🛒
-                            <span
-                                class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">0</span>
+                            <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-warning text-dark">0</span>
                         </a>
                         <a href="#"><i class="bi bi-search"></i></a>
                     </div>
@@ -54,6 +50,34 @@
             </div>
         </nav>
     </header>
+
+    <main class="flex-grow-1">
+        <div class="course-header">
+            <h1 class="display-5 fw-bold text-success">Biology Courses</h1>
+            <p class="text-muted lead">Explore the science of life, from cells to ecosystems and beyond.</p>
+        </div>
+
+        <section class="course-section">
+            <h2 class="mb-4 text-center">Featured Biology Courses</h2>
+            <div class="row g-4">
+                @forelse ($courses as $course)
+                    <div class="col-md-6 col-lg-4">
+                        <div class="card course-card">
+                            <img src="{{ asset('storage/' . $course->image) }}" class="card-img-top course-image" alt="{{ $course->title }}">
+                            <div class="card-body">
+                                <h5 class="card-title">{{ $course->title }}</h5>
+                                <p class="card-text text-muted">{{ $course->description }}</p>
+                                <span class="badge bg-secondary mb-2">{{ ucfirst($course->level) ?? 'N/A' }}</span>
+                                <a href="#" class="btn btn-primary w-100 mt-2">Enroll Now</a>
+                            </div>
+                        </div>
+                    </div>
+                @empty
+                    <p class="text-center text-muted">No Biology courses available at the moment.</p>
+                @endforelse
+            </div>
+        </section>
+    </main>
 
     <footer class="bg-black text-white py-3 mt-auto">
         <div class="container text-center">
@@ -65,8 +89,8 @@
             </p>
         </div>
     </footer>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
 </html>

@@ -13,6 +13,26 @@ class CourseController extends Controller
 
     return view('courses.mathematics', compact('courses'));
 }
+    public function physics()
+{
+    $courses = Course::where('subject', 'physics')->get();
+    return view('courses.physics', compact('courses'));
+}
+
+    public function chemistry()
+{
+    $courses = Course::where('subject', 'chemistry')->get();
+    return view('courses.chemistry', compact('courses'));
+}
+
+    public function biology()
+{
+    $courses = Course::where('subject', 'biology')->get();
+    return view('courses.biology', compact('courses'));
+}
+
+
+
 
     public function showSubject($subject)
 {

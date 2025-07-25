@@ -62,50 +62,25 @@
         </div>
 
         <section class="course-section">
-            <h2 class="mb-4 text-center">Featured Chemistry Courses</h2>
-            <div class="row g-4">
-                <div class="col-md-6 col-lg-4">
-                    <div class="card course-card">
-                        <img src="{{ asset('assets/images/organic_chemistry.jpg') }}" class="card-img-top course-image"
-                            alt="Organic Chemistry">
-                        <div class="card-body">
-                            <h5 class="card-title">Introduction to Organic Chemistry</h5>
-                            <p class="card-text text-muted">Understand carbon compounds, reaction types, and isomerism.
-                            </p>
-                            <span class="badge bg-info text-dark mb-2">Beginner</span>
-                            <a href="#" class="btn btn-success w-100 mt-2">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card course-card">
-                        <img src="{{ asset('assets/images/inorganic_chemistry.jpg') }}"
-                            class="card-img-top course-image" alt="Inorganic Chemistry">
-                        <div class="card-body">
-                            <h5 class="card-title">Inorganic Chemistry Simplified</h5>
-                            <p class="card-text text-muted">Study periodic trends, bonding, and transition metals.</p>
-                            <span class="badge bg-warning text-dark mb-2">Intermediate</span>
-                            <a href="#" class="btn btn-success w-100 mt-2">Enroll Now</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="col-md-6 col-lg-4">
-                    <div class="card course-card">
-                        <img src="{{ asset('assets/images/physical_chemistry.jpg') }}"
-                            class="card-img-top course-image" alt="Physical Chemistry">
-                        <div class="card-body">
-                            <h5 class="card-title">Physical Chemistry Essentials</h5>
-                            <p class="card-text text-muted">Explore thermodynamics, kinetics, and chemical equilibrium.
-                            </p>
-                            <span class="badge bg-danger mb-2">Advanced</span>
-                            <a href="#" class="btn btn-success w-100 mt-2">Enroll Now</a>
-                        </div>
+    <h2 class="mb-4 text-center">Featured Chemistry Courses</h2>
+    <div class="row g-4">
+        @forelse ($courses as $course)
+            <div class="col-md-6 col-lg-4">
+                <div class="card course-card">
+                    <img src="{{ asset($course->image) }}" class="card-img-top course-image" alt="{{ $course->title }}">
+                    <div class="card-body">
+                        <h5 class="card-title">{{ $course->title }}</h5>
+                        <p class="card-text text-muted">{{ $course->description }}</p>
+                        <span class="badge bg-secondary mb-2">{{ ucfirst($course->level) ?? 'N/A' }}</span>
+                        <a href="{{ route('courses.purchase', ['id' => $course->id]) }}" class="btn btn-primary w-100 mt-2">Enroll Now</a>
                     </div>
                 </div>
             </div>
-        </section>
+        @empty
+            <p class="text-center text-muted">No Chemistry courses available at the moment.</p>
+        @endforelse
+    </div>
+</section>
     </main>
 
     <footer class="bg-black text-white py-3 mt-auto">

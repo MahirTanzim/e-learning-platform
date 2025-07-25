@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+
 Route::get('/', function () {
     return view('welcome');
 });
@@ -22,12 +23,16 @@ Route::get('/courses/physics', function () {
     return view('courses.physics');
 })->name('courses.physics');
 
+
 Route::get('/courses/chemistry', function () {
     return view('courses.chemistry');
 })->name('courses.chemistry');
 
 use App\Http\Controllers\CourseController;
 Route::get('/courses/mathematics', [CourseController::class, 'mathematics'])->name('courses.mathematics');
+Route::get('/courses/physics', [CourseController::class, 'physics'])->name('courses.physics');
+Route::get('/courses/chemistry', [CourseController::class, 'chemistry'])->name('courses.chemistry');
+Route::get('/courses/biology', [CourseController::class, 'biology'])->name('courses.biology');
 
 Route::get('/courses/english', function () {
     return view('courses.english');
