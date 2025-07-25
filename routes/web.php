@@ -33,14 +33,7 @@ Route::get('/courses/mathematics', [CourseController::class, 'mathematics'])->na
 Route::get('/courses/physics', [CourseController::class, 'physics'])->name('courses.physics');
 Route::get('/courses/chemistry', [CourseController::class, 'chemistry'])->name('courses.chemistry');
 Route::get('/courses/biology', [CourseController::class, 'biology'])->name('courses.biology');
-
-Route::get('/courses/english', function () {
-    return view('courses.english');
-})->name('courses.english');
-
-Route::get('/courses/biology', function () {
-    return view('courses.biology');
-})->name('courses.biology');
+Route::get('/courses/english', [CourseController::class, 'english'])->name('courses.english');
 
 // Authentication routes
 Route::get('/login', function () {

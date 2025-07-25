@@ -7,6 +7,11 @@ use App\Models\Course;
 
 class CourseController extends Controller
 {
+    public function biology()
+    {
+        $courses = Course::where('subject', 'biology')->get();
+        return view('courses.biology', compact('courses'));
+    }
     public function mathematics()
 {
     $courses = Course::where('subject', 'mathematics')->get();
@@ -25,10 +30,10 @@ class CourseController extends Controller
     return view('courses.chemistry', compact('courses'));
 }
 
-    public function biology()
+public function english()
 {
-    $courses = Course::where('subject', 'biology')->get();
-    return view('courses.biology', compact('courses'));
+    $courses = Course::where('subject', 'english')->get();
+    return view('courses.english', compact('courses'));
 }
 
 

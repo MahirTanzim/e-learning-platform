@@ -22,10 +22,9 @@
                 </button>
                 <div class="collapse navbar-collapse" id="navMenu">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-                        <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">HOME</a></li>
+                        <li><a class="nav-link" href="{{ url('/') }}">HOME</a></li>
                         <li class="nav-item dropdown">
-                            <a class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown">COURSES</a>
+                            <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown">COURSES</a>
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="{{ route('courses.mathematics') }}">Mathematics</a></li>
                                 <li><a class="dropdown-item" href="{{ route('courses.physics') }}">Physics</a></li>
@@ -34,8 +33,8 @@
                                 <li><a class="dropdown-item" href="{{ route('courses.english') }}">English</a></li>
                             </ul>
                         </li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('become.teacher') }}">BECOME A TEACHER</a></li>
-                        <li class="nav-item"><a class="nav-link" href="{{ route('blog') }}">BLOG</a></li>
+                        <li><a class="nav-link" href="{{ route('become.teacher') }}">BECOME A TEACHER</a></li>
+                        <li><a class="nav-link" href="{{ route('blog') }}">BLOG</a></li>
                     </ul>
                     <div class="d-flex align-items-center">
                         <a href="{{ route('register') }}" class="me-3 text-dark">Register</a>
@@ -63,12 +62,12 @@
                 @forelse ($courses as $course)
                     <div class="col-md-6 col-lg-4">
                         <div class="card course-card">
-                            <img src="{{ asset('storage/' . $course->image) }}" class="card-img-top course-image" alt="{{ $course->title }}">
+                            <img src="{{ asset($course->image) }}" class="card-img-top course-image" alt="{{ $course->title }}">
                             <div class="card-body">
                                 <h5 class="card-title">{{ $course->title }}</h5>
                                 <p class="card-text text-muted">{{ $course->description }}</p>
                                 <span class="badge bg-secondary mb-2">{{ ucfirst($course->level) ?? 'N/A' }}</span>
-                                <a href="#" class="btn btn-primary w-100 mt-2">Enroll Now</a>
+                                <a href="{{ route('courses.purchase', ['id' => $course->id]) }}" class="btn btn-primary w-100 mt-2">Enroll Now</a>
                             </div>
                         </div>
                     </div>
@@ -89,7 +88,6 @@
             </p>
         </div>
     </footer>
-
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 
