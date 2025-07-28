@@ -27,8 +27,7 @@
     <div class="message">
         <h1>🎉 Congrats on purchasing the course!</h1>
         <p>The course has been added to your <strong>My Courses</strong> section in the student portal.</p>
-        <a href="{{ route('student.dashboard') }}">Go to Dashboard</a>
-
+        <a href="/dashboard">Go to Dashboard</a>
     </div>
 </body>
 </html>
