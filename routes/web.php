@@ -147,7 +147,3 @@ Route::get('/purchase/{id}', [CourseController::class, 'purchase'])->name('purch
 Route::get('/purchase-success', function () {
     return view('purchase-success');
 })->name('purchase.success');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
