@@ -136,7 +136,7 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-3">
-                    <h5>ELearn</h5>
+                    <h5>academiaBD</h5>
                     <p>Making quality education accessible to everyone, everywhere.</p>
                 </div>
                 <div class="col-md-3">
