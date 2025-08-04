@@ -151,3 +151,8 @@ Route::get('/purchase-success', function () {
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+//dashbord route
+Route::get('/student/dashboard', function () {
+    return view('student');
+})->name('student.dashboard');
