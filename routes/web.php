@@ -3,7 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-
+use App\Http\Controllers\CourseController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -19,21 +19,17 @@ Route::get('/become-a-teacher', function () {
 })->name('become.teacher');
 
 // Course routes (public)
-Route::get('/courses/physics', function () {
-    return view('courses.physics');
-})->name('courses.physics');
-
-
-Route::get('/courses/chemistry', function () {
-    return view('courses.chemistry');
-})->name('courses.chemistry');
-
-use App\Http\Controllers\CourseController;
 Route::get('/courses/mathematics', [CourseController::class, 'mathematics'])->name('courses.mathematics');
 Route::get('/courses/physics', [CourseController::class, 'physics'])->name('courses.physics');
 Route::get('/courses/chemistry', [CourseController::class, 'chemistry'])->name('courses.chemistry');
 Route::get('/courses/biology', [CourseController::class, 'biology'])->name('courses.biology');
 Route::get('/courses/english', [CourseController::class, 'english'])->name('courses.english');
+
+// Purchase routes
+Route::get('/courses/{id}/purchase', [CourseController::class, 'purchase'])->name('courses.purchase');
+Route::get('/purchase-success', function () {
+    return view('purchase-success');
+})->name('purchase.success');
 
 // Authentication routes
 Route::get('/login', function () {
@@ -48,7 +44,7 @@ Route::post('/login', function (Request $request) {
         $user = Auth::user();
 
         // Check if the user's role matches the selected role
-        if ($user->role !== $role) {
+        if (($user->role ?? '') !== $role) {
             Auth::logout();
             return back()->with('error', 'Invalid role selected for this account.');
         }
@@ -56,7 +52,7 @@ Route::post('/login', function (Request $request) {
         $request->session()->regenerate();
 
         // Redirect based on role
-        switch ($user->role) {
+        switch ($user->role ?? '') {
             case 'admin':
                 return redirect()->route('admin.dashboard');
             case 'teacher':
@@ -111,23 +107,23 @@ Route::post('/logout', function (Request $request) {
     return redirect('/');
 })->name('logout');
 
-// Protected routes using existing RoleMiddleware
+// Protected routes
 Route::middleware(['auth'])->group(function () {
-
+    
     // Student routes
     Route::middleware([\App\Http\Middleware\RoleMiddleware::class.':student'])->group(function () {
         Route::get('/student/dashboard', function () {
             return view('courses.student');
         })->name('student.dashboard');
     });
-
+    
     // Teacher routes
     Route::middleware([\App\Http\Middleware\RoleMiddleware::class.':teacher'])->group(function () {
         Route::get('/teacher/dashboard', function () {
             return view('teacher');
         })->name('teacher.dashboard');
     });
-
+    
     // Admin routes
     Route::middleware([\App\Http\Middleware\RoleMiddleware::class.':admin'])->group(function () {
         Route::get('/admin/dashboard', function () {
@@ -135,24 +131,3 @@ Route::middleware(['auth'])->group(function () {
         })->name('admin.dashboard');
     });
 });
-Route::get('/courses/{id}/purchase', [CourseController::class, 'purchase'])->name('courses.purchase');
-
-
-
-
-
-
-Route::get('/purchase/{id}', [CourseController::class, 'purchase'])->name('purchase.course');
-
-Route::get('/purchase-success', function () {
-    return view('purchase-success');
-})->name('purchase.success');
-
-Auth::routes();
-
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-//dashbord route
-Route::get('/student/dashboard', function () {
-    return view('student');
-})->name('student.dashboard');
