@@ -96,7 +96,9 @@
             </div>
         </div>
     </div>
-     <!-- Recent Enrollments -->
+     <!-- Recent Enrollments & Course Performance -->
+    <div class="row mb-4">
+        <!-- Recent Enrollments -->
         <div class="col-lg-8">
             <div class="card shadow">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
@@ -156,6 +158,36 @@
                 </div>
             </div>
         </div>
+
+        <!-- Course Performance -->
+        <div class="col-lg-4">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Top Performing Courses</h6>
+                </div>
+                <div class="card-body">
+                    @if($topCourses->count() > 0)
+                        @foreach($topCourses as $course)
+                            <div class="d-flex justify-content-between align-items-center mb-3">
+                                <div class="flex-grow-1">
+                                    <h6 class="mb-1">{{ $course->title }}</h6>
+                                    <small class="text-muted">{{ $course->enrollments_count }} students</small>
+                                </div>
+                                <div class="text-end">
+                                    <div class="text-success fw-bold">${{ number_format($course->total_revenue, 2) }}</div>
+                                    <small class="text-muted">Revenue</small>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="text-center py-4">
+                            <p class="text-muted">No course data available.</p>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
     <!-- My Courses & Quick Actions -->
     <div class="row">
         <!-- My Courses -->
