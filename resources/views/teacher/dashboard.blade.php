@@ -96,7 +96,72 @@
             </div>
         </div>
     </div>
-    
+    <!-- My Courses -->
+    <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary">My Courses</h6>
+                    <a href="{{ route('teacher.courses.create') }}" class="btn btn-sm btn-primary">
+                        <i class="fas fa-plus me-1"></i>Create Course
+                    </a>
+                </div>
+                <div class="card-body">
+                    @if($myCourses->count() > 0)
+                        <div class="row">
+                            @foreach($myCourses as $course)
+                                <div class="col-lg-6 mb-4">
+                                    <div class="card course-card h-100">
+                                        @if($course->thumbnail)
+                                            <img src="{{ asset('storage/' . $course->thumbnail) }}"
+                                                 class="card-img-top" alt="{{ $course->title }}"
+                                                 style="height: 150px; object-fit: cover;">
+                                        @else
+                                            <div class="card-img-top bg-light d-flex align-items-center justify-content-center"
+                                                 style="height: 150px;">
+                                                <i class="fas fa-book fa-2x text-muted"></i>
+                                            </div>
+                                        @endif
+                                        <div class="card-body d-flex flex-column">
+                                            <div class="d-flex justify-content-between align-items-start mb-2">
+                                                <h6 class="card-title mb-0">{{ $course->title }}</h6>
+                                                <span class="badge bg-{{ $course->status === 'published' ? 'success' : 'warning' }}">
+                                                    {{ ucfirst($course->status) }}
+                                                </span>
+                                            </div>
+                                            <p class="card-text text-muted flex-grow-1">
+                                                {{ Str::limit($course->description, 80) }}
+                                            </p>
+                                            <div class="d-flex justify-content-between align-items-center mb-2">
+                                                <small class="text-muted">
+                                                    <i class="fas fa-users me-1"></i>{{ $course->enrollments()->count() }} students
+                                                </small>
+                                                <small class="text-muted">${{ number_format($course->price, 2) }}</small>
+                                            </div>
+                                            <div class="btn-group w-100" role="group">
+                                                <a href="{{ route('teacher.courses.show', $course) }}"
+                                                   class="btn btn-outline-primary btn-sm">View</a>
+                                                <a href="{{ route('teacher.courses.edit', $course) }}"
+                                                   class="btn btn-outline-secondary btn-sm">Edit</a>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach
+                        </div>
+                    @else
+                        <div class="text-center py-5">
+                            <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
+                            <h5>No courses created yet</h5>
+                            <p class="text-muted">Start creating your first course to share your knowledge!</p>
+                            <a href="{{ route('teacher.courses.create') }}" class="btn btn-primary">
+                                Create Your First Course
+                            </a>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+
 </div>
 
 <style>
