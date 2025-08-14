@@ -96,8 +96,10 @@
             </div>
         </div>
     </div>
-    <!-- My Courses -->
-    <div class="col-lg-8">
+    <!-- My Courses & Quick Actions -->
+    <div class="row">
+        <!-- My Courses -->
+        <div class="col-lg-8">
             <div class="card shadow">
                 <div class="card-header py-3 d-flex justify-content-between align-items-center">
                     <h6 class="m-0 font-weight-bold text-primary">My Courses</h6>
@@ -161,6 +163,74 @@
                 </div>
             </div>
         </div>
+
+        <!-- Quick Actions -->
+        <div class="col-lg-4">
+            <div class="card shadow">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Quick Actions</h6>
+                </div>
+                <div class="card-body">
+                    <div class="list-group list-group-flush">
+                        <a href="{{ route('teacher.courses.create') }}" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <i class="fas fa-plus me-3 text-primary"></i>
+                            Create New Course
+                        </a>
+                        <a href="{{ route('teacher.blog.create') }}" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <i class="fas fa-edit me-3 text-primary"></i>
+                            Write Blog Post
+                        </a>
+                        <a href="{{ route('teacher.blog.index') }}" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <i class="fas fa-newspaper me-3 text-primary"></i>
+                            Manage Blog Posts
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <i class="fas fa-chart-bar me-3 text-primary"></i>
+                            View Analytics
+                        </a>
+                        <a href="#" class="list-group-item list-group-item-action d-flex align-items-center">
+                            <i class="fas fa-cog me-3 text-primary"></i>
+                            Settings
+                        </a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Recent Blog Posts -->
+            <div class="card shadow mt-4">
+                <div class="card-header py-3">
+                    <h6 class="m-0 font-weight-bold text-primary">Recent Blog Posts</h6>
+                </div>
+                <div class="card-body">
+                    @if($recentBlogPosts->count() > 0)
+                        @foreach($recentBlogPosts as $post)
+                            <div class="mb-3">
+                                <h6 class="mb-1">
+                                    <a href="{{ route('blog.show', $post->slug) }}" class="text-decoration-none">
+                                        {{ Str::limit($post->title, 40) }}
+                                    </a>
+                                </h6>
+                                <small class="text-muted">{{ $post->created_at->format('M d, Y') }}</small>
+                                <div class="mt-1">
+                                    <small class="text-muted">
+                                        <i class="fas fa-heart me-1"></i>{{ $post->likes()->count() }}
+                                        <i class="fas fa-comment ms-2 me-1"></i>{{ $post->comments()->count() }}
+                                    </small>
+                                </div>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="text-center py-3">
+                            <p class="text-muted">No blog posts yet.</p>
+                            <a href="{{ route('teacher.blog.create') }}" class="btn btn-sm btn-primary">
+                                Write First Post
+                            </a>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
 
 </div>
 
