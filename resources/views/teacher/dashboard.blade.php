@@ -96,6 +96,66 @@
             </div>
         </div>
     </div>
+     <!-- Recent Enrollments -->
+        <div class="col-lg-8">
+            <div class="card shadow">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary">Recent Enrollments</h6>
+                    <a href="{{ route('teacher.courses.index') }}" class="btn btn-sm btn-primary">
+                        View All Courses
+                    </a>
+                </div>
+                <div class="card-body">
+                    @if($recentEnrollments->count() > 0)
+                        <div class="table-responsive">
+                            <table class="table table-hover">
+                                <thead>
+                                    <tr>
+                                        <th>Student</th>
+                                        <th>Course</th>
+                                        <th>Enrolled</th>
+                                        <th>Progress</th>
+                                        <th>Action</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach($recentEnrollments as $enrollment)
+                                        <tr>
+                                            <td>
+                                                <div class="d-flex align-items-center">
+                                                    <img src="{{ $enrollment->student->avatar_url }}"
+                                                         alt="{{ $enrollment->student->name }}"
+                                                         class="rounded-circle me-2" style="width: 30px; height: 30px;">
+                                                    <span>{{ $enrollment->student->name }}</span>
+                                                </div>
+                                            </td>
+                                            <td>{{ $enrollment->course->title }}</td>
+                                            <td>{{ $enrollment->enrolled_at->diffForHumans() }}</td>
+                                            <td>
+                                                <div class="progress" style="height: 6px; width: 100px;">
+                                                    <div class="progress-bar" role="progressbar"
+                                                         style="width: {{ $enrollment->progress ?? 0 }}%"></div>
+                                                </div>
+                                                <small class="text-muted">{{ $enrollment->progress ?? 0 }}%</small>
+                                            </td>
+                                            <td>
+                                                <a href="{{ route('teacher.courses.show', $enrollment->course) }}"
+                                                   class="btn btn-sm btn-outline-primary">View</a>
+                                            </td>
+                                        </tr>
+                                    @endforeach
+                                </tbody>
+                            </table>
+                        </div>
+                    @else
+                        <div class="text-center py-4">
+                            <i class="fas fa-users fa-2x text-muted mb-3"></i>
+                            <p class="text-muted">No recent enrollments.</p>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
     <!-- My Courses & Quick Actions -->
     <div class="row">
         <!-- My Courses -->
