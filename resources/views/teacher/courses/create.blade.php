@@ -70,6 +70,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
@@ -124,7 +125,6 @@
                                 </div>
                             </div>
 
-
                             <div class="col-md-4">
                                 <!-- Thumbnail Upload -->
                                 <div class="mb-3">
@@ -158,7 +158,6 @@
                                     </div>
                                 </div>
                             </div>
-
                         </div>
 
                         <div class="d-flex justify-content-between">
@@ -209,4 +208,4 @@ document.getElementById('thumbnail').addEventListener('change', function(e) {
     box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
 }
 </style>
-@endsection
+@endsection 
