@@ -2,7 +2,14 @@
 
 @section('title', 'My Enrolled Courses')
 
-
+@section('content')
+<div class="container-fluid py-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h1 class="h3 mb-0">My Enrolled Courses</h1>
+        <a href="{{ route('courses.index') }}" class="btn btn-primary">
+            <i class="fas fa-search me-2"></i>Browse More Courses
+        </a>
+    </div>
 
     @if(session('success'))
         <div class="alert alert-success alert-dismissible fade show" role="alert">
