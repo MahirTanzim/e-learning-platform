@@ -70,6 +70,7 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
                                     <div class="col-md-6">
                                         <div class="mb-3">
@@ -123,9 +124,40 @@
                                     @enderror
                                 </div>
                             </div>
-                        
 
+                            <div class="col-md-4">
+                                <!-- Thumbnail Upload -->
+                                <div class="mb-3">
+                                    <label for="thumbnail" class="form-label">Course Thumbnail</label>
+                                    <input type="file" class="form-control @error('thumbnail') is-invalid @enderror"
+                                           id="thumbnail" name="thumbnail" accept="image/*">
+                                    <small class="form-text text-muted">Recommended size: 1280x720px, Max: 2MB</small>
+                                    @error('thumbnail')
+                                        <div class="invalid-feedback">{{ $message }}</div>
+                                    @enderror
+                                </div>
 
+                                <!-- Preview -->
+                                <div class="mb-3">
+                                    <label class="form-label">Thumbnail Preview</label>
+                                    <div class="border rounded p-3 text-center" id="thumbnail-preview">
+                                        <i class="fas fa-image fa-3x text-muted"></i>
+                                        <p class="text-muted mt-2">No image selected</p>
+                                    </div>
+                                </div>
+
+                                <!-- Settings -->
+                                <div class="mb-3">
+                                    <label class="form-label">Course Settings</label>
+                                    <div class="form-check">
+                                        <input class="form-check-input" type="checkbox" id="certificate_available"
+                                               name="certificate_available" value="1" {{ old('certificate_available') ? 'checked' : '' }}>
+                                        <label class="form-check-label" for="certificate_available">
+                                            Certificate Available
+                                        </label>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
 
                         <div class="d-flex justify-content-between">
@@ -142,6 +174,28 @@
         </div>
     </div>
 </div>
+
+<script>
+// Thumbnail preview
+document.getElementById('thumbnail').addEventListener('change', function(e) {
+    const file = e.target.files[0];
+    const preview = document.getElementById('thumbnail-preview');
+
+    if (file) {
+        const reader = new FileReader();
+        reader.onload = function(e) {
+            preview.innerHTML = `<img src="${e.target.result}" class="img-fluid rounded" alt="Preview">`;
+        };
+        reader.readAsDataURL(file);
+    } else {
+        preview.innerHTML = `
+            <i class="fas fa-image fa-3x text-muted"></i>
+            <p class="text-muted mt-2">No image selected</p>
+        `;
+    }
+});
+</script>
+
 <style>
 .card {
     border: none;
@@ -154,4 +208,4 @@
     box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
 }
 </style>
-@endsection
+@endsection 
