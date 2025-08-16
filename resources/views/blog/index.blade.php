@@ -45,7 +45,18 @@
                         </div>
                     </div>
                 </article>
-           
+            @empty
+                <div class="text-center py-5">
+                    <i class="fas fa-newspaper fa-3x text-muted mb-3"></i>
+                    <h4>No blog posts yet</h4>
+                    <p class="text-muted">Check back later for new content!</p>
+                </div>
+            @endforelse
+            
+            <div class="d-flex justify-content-center">
+                {{ $posts->links() }}
+            </div>
+        </div>
         
         <div class="col-lg-4">
             <div class="card">
