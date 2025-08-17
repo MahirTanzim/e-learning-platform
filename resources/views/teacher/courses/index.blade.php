@@ -83,11 +83,43 @@
                 </div>
             @endforeach
         </div>
+        <div class="d-flex justify-content-center">
+            {{ $courses->links() }}
+        </div>
+    @else
+        <div class="text-center py-5">
+            <i class="fas fa-book-open fa-3x text-muted mb-3"></i>
+            <h4>No courses created yet</h4>
+            <p class="text-muted">Start creating your first course to share your knowledge!</p>
+            <a href="{{ route('teacher.courses.create') }}" class="btn btn-primary">
+                Create Your First Course
+            </a>
+        </div>
+    @endif
 
 
 </div>
 
-
+<script>
+function deleteCourse(courseId) {
+    if (confirm('Are you sure you want to delete this course? This action cannot be undone.')) {
+        fetch(`/teacher/courses/${courseId}`, {
+            method: 'DELETE',
+            headers: {
+                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'Content-Type': 'application/json'
+            }
+        })
+        .then(response => {
+            if (response.ok) {
+                window.location.reload();
+            } else {
+                alert('Error deleting course');
+            }
+        });
+    }
+}
+</script>
 
 <style>
 .course-card {
