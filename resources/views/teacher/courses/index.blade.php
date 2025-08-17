@@ -24,7 +24,10 @@
                 <div class="col-lg-4 col-md-6 mb-4">
                     <div class="card course-card h-100">
                         @if($course->thumbnail)
-
+                            <img src="{{ asset('storage/' . $course->thumbnail) }}"
+                                 class="card-img-top" alt="{{ $course->title }}"
+                                 style="height: 200px; object-fit: cover;">
+                        @else
                             <div class="card-img-top bg-light d-flex align-items-center justify-content-center"
                                  style="height: 200px;">
                                 <i class="fas fa-book fa-3x text-muted"></i>
