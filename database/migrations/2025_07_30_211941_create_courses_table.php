@@ -13,6 +13,13 @@ return new class extends Migration
             $table->string('title');
             $table->string('slug')->unique();
             $table->text('description');
+            $table->string('thumbnail')->nullable();
+            $table->decimal('price', 8, 2)->default(0.00);
+            $table->foreignId('teacher_id')->constrained('users')->onDelete('cascade');
+            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->enum('level', ['beginner', 'intermediate', 'advanced'])->default('beginner');
+            $table->enum('status', ['draft', 'published', 'archived'])->default('draft');
+            $table->integer('duration')->default(0); // in minutes
             $table->text('prerequisites')->nullable();
             $table->text('learning_outcomes')->nullable();
             $table->text('requirements')->nullable();
