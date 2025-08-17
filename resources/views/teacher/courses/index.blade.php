@@ -62,6 +62,7 @@
                                     </div>
                                 </div>
                             </div>
+
                             <div class="btn-group w-100" role="group">
                                 <a href="{{ route('teacher.courses.show', $course) }}"
                                    class="btn btn-outline-primary btn-sm">
@@ -76,13 +77,12 @@
                                     <i class="fas fa-trash me-1"></i>Delete
                                 </button>
                             </div>
-
-
                         </div>
                     </div>
                 </div>
             @endforeach
         </div>
+
         <div class="d-flex justify-content-center">
             {{ $courses->links() }}
         </div>
@@ -96,8 +96,6 @@
             </a>
         </div>
     @endif
-
-
 </div>
 
 <script>
