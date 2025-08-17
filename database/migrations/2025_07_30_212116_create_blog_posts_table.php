@@ -12,7 +12,9 @@ return new class extends Migration
             $table->id();
             $table->foreignId('teacher_id')->constrained('users')->onDelete('cascade');
             $table->string('title');
-            
+            $table->string('slug')->unique();
+            $table->longText('content');
+            $table->string('featured_image')->nullable();
             $table->enum('status', ['draft', 'published'])->default('draft');
             $table->timestamps();
         });
