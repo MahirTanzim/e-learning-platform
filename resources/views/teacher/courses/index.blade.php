@@ -62,6 +62,20 @@
                                     </div>
                                 </div>
                             </div>
+                            <div class="btn-group w-100" role="group">
+                                <a href="{{ route('teacher.courses.show', $course) }}"
+                                   class="btn btn-outline-primary btn-sm">
+                                    <i class="fas fa-eye me-1"></i>View
+                                </a>
+                                <a href="{{ route('teacher.courses.edit', $course) }}"
+                                   class="btn btn-outline-secondary btn-sm">
+                                    <i class="fas fa-edit me-1"></i>Edit
+                                </a>
+                                <button type="button" class="btn btn-outline-danger btn-sm"
+                                        onclick="deleteCourse({{ $course->id }})">
+                                    <i class="fas fa-trash me-1"></i>Delete
+                                </button>
+                            </div>
 
 
                         </div>
