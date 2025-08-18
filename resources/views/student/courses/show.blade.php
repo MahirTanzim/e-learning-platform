@@ -40,6 +40,8 @@
                          alt="{{ $course->title }}" class="img-fluid rounded mb-4">
                 @endif
             </div>
+
+        
             <!-- hgfht -->
             <!-- Course Content -->
             <div class="course-content">
