@@ -136,7 +136,7 @@
                                                 </div>
                                                 <div class="progress" style="height: 6px;">
                                                     <div class="progress-bar" role="progressbar" 
-                                                         style="width: {{ $course->pivot->progress ?? 0 }}%"></div>
+                                                         style="width: {{ $course->pivot->progress ?? 0 }}%;"></div>
                                                 </div>
                                             </div>
                                             <a href="{{ route('student.courses.show', $course) }}" 
@@ -273,4 +273,4 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 </style>
-@endsection 
+@endsection

@@ -13,6 +13,8 @@ use App\Http\Controllers\Admin\DashboardController as AdminDashboardController;
 use App\Http\Controllers\Admin\UserController as AdminUserController;
 use App\Http\Controllers\Admin\CourseController as AdminCourseController;
 use App\Http\Controllers\Admin\ComplaintController as AdminComplaintController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\PaymentController;
 
 // Public Routes
 Route::get('/', [HomeController::class, 'index'])->name('home');
@@ -31,6 +33,12 @@ Route::middleware('guest')->group(function () {
 
 Route::post('/logout', [AuthController::class, 'logout'])->name('logout')->middleware('auth');
 
+// Profile Routes
+Route::middleware(['auth'])->group(function () {
+    Route::get('/profile/edit', [ProfileController::class, 'edit'])->name('profile.edit');
+    Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
+});
+
 // Protected Routes
 Route::middleware(['auth'])->group(function () {
     
@@ -40,7 +48,8 @@ Route::middleware(['auth'])->group(function () {
         
         // Course Routes
         Route::get('/courses', [StudentCourseController::class, 'index'])->name('courses.index');
-        Route::post('/courses/{course}/enroll', [StudentCourseController::class, 'enroll'])->name('courses.enroll');
+        Route::get('/courses/{course}/payment', [PaymentController::class, 'showPaymentForm'])->name('courses.payment');
+        Route::post('/courses/{course}/payment', [PaymentController::class, 'processPayment'])->name('courses.process-payment');
         Route::get('/courses/{course}', [StudentCourseController::class, 'show'])
              ->middleware('course.enrolled')
              ->name('courses.show');

@@ -45,6 +45,8 @@ class CourseController extends Controller
             'level' => 'required|in:beginner,intermediate,advanced',
             'prerequisites' => 'nullable|string',
             'certificate_available' => 'boolean',
+            'learning_outcomes' => 'nullable|string',
+            'requirements' => 'nullable|string',
         ]);
 
         $thumbnailPath = null;

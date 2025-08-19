@@ -42,11 +42,11 @@ class BlogController extends Controller
         }
 
         auth()->user()->blogPosts()->create([
-            'title' => $request->title,
-            'slug' => Str::slug($request->title . '-' . time()),
-            'content' => $request->content,
+            'title' => $request->input('title'),
+            'slug' => Str::slug($request->input('title') . '-' . time()),
+            'content' => $request->input('content'),
             'featured_image' => $featuredImagePath,
-            'status' => $request->status,
+            'status' => $request->input('status'),
         ]);
 
         return redirect()->route('teacher.blog.index')
@@ -82,10 +82,10 @@ class BlogController extends Controller
         }
 
         $post->update([
-            'title' => $request->title,
-            'content' => $request->content,
+            'title' => $request->input('title'),
+            'content' => $request->input('content'),
             'featured_image' => $featuredImagePath,
-            'status' => $request->status,
+            'status' => $request->input('status'),
         ]);
 
         return redirect()->route('teacher.blog.index')

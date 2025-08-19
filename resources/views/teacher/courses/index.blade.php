@@ -100,11 +100,17 @@
 
 <script>
 function deleteCourse(courseId) {
+    const csrfToken = document.querySelector('meta[name="csrf-token"]')?.getAttribute('content');
+    if (!csrfToken) {
+        alert('CSRF token not found. Please refresh the page.');
+        return;
+    }
+
     if (confirm('Are you sure you want to delete this course? This action cannot be undone.')) {
         fetch(`/teacher/courses/${courseId}`, {
             method: 'DELETE',
             headers: {
-                'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+                'X-CSRF-TOKEN': csrfToken,
                 'Content-Type': 'application/json'
             }
         })
@@ -112,8 +118,14 @@ function deleteCourse(courseId) {
             if (response.ok) {
                 window.location.reload();
             } else {
-                alert('Error deleting course');
+                return response.json().then(data => {
+                    alert(data.message || 'Error deleting course');
+                });
             }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('An unexpected error occurred.');
         });
     }
 }
@@ -136,4 +148,4 @@ function deleteCourse(courseId) {
     padding-top: 1rem;
 }
 </style>
-@endsection 
+@endsection

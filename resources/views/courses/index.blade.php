@@ -102,8 +102,9 @@
                 @forelse($courses as $course)
                     <div class="col-md-6 col-lg-4 mb-4">
                         <div class="card course-card h-100">
-                            <img src="{{ $course->thumbnail_url }}" class="card-img-top" 
-                                 alt="{{ $course->title }}" style="height: 200px; object-fit: cover;">
+                            <img src="{{ $course->thumbnail_url ?? asset('images/default-thumbnail.jpg') }}" 
+                                 class="card-img-top" alt="{{ $course->title ?? 'Course Thumbnail' }}" 
+                                 style="height: 200px; object-fit: cover;">
                             <div class="card-body d-flex flex-column">
                                 <span class="badge bg-primary mb-2 align-self-start">{{ $course->category->name }}</span>
                                 <h5 class="card-title">{{ $course->title }}</h5>
@@ -127,7 +128,7 @@
                                         @endif
                                     </div>
                                     <div>
-                                        @for($i = 1; $i <= 5; $i++)
+                                        @for($i = 1; $i <= 7; $i++)
                                             @if($i <= $course->average_rating)
                                                 <i class="fas fa-star text-warning"></i>
                                             @else

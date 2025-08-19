@@ -158,6 +158,58 @@
         </div>
 
         <div class="col-lg-4">
+            <!-- Enrollment/Payment Card -->
+            @if(!auth()->user()->isEnrolledIn($course->id))
+                <div class="card mb-4 border-success">
+                    <div class="card-header bg-success text-white">
+                        <h5 class="mb-0"><i class="fas fa-lock me-2"></i>Enroll in This Course</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h4 class="text-success mb-2">${{ number_format($course->price, 2) }}</h4>
+                                <p class="mb-3">Get access to all course content, quizzes, and assignments</p>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success me-2"></i>Lifetime access to course content</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Interactive quizzes and assignments</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Certificate upon completion</li>
+                                    <li><i class="fas fa-check text-success me-2"></i>Direct access to instructor</li>
+                                </ul>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <a href="{{ route('student.courses.payment', $course) }}" class="btn btn-success btn-lg w-100">
+                                    <i class="fas fa-credit-card me-2"></i>Enroll Now
+                                </a>
+                                <small class="text-muted d-block mt-2">Secure payment processing</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @else
+                <div class="card mb-4 border-primary">
+                    <div class="card-header bg-primary text-white">
+                        <h5 class="mb-0"><i class="fas fa-check-circle me-2"></i>You're Enrolled!</h5>
+                    </div>
+                    <div class="card-body">
+                        <div class="row align-items-center">
+                            <div class="col-md-8">
+                                <h6 class="mb-2">Welcome to the course!</h6>
+                                <p class="mb-2">You have full access to all course content.</p>
+                                <div class="progress mb-2" style="height: 8px;">
+                                    <div class="progress-bar" role="progressbar" 
+                                         style="width: {{ $enrollment->progress ?? 0 }}%"></div>
+                                </div>
+                                <small class="text-muted">Progress: {{ $enrollment->progress ?? 0 }}%</small>
+                            </div>
+                            <div class="col-md-4 text-center">
+                                <span class="badge bg-success fs-6">Enrolled</span>
+                                <small class="text-muted d-block mt-2">Keep learning!</small>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            @endif
+
             <!-- Course Info Card -->
             <div class="card mb-4">
                 <div class="card-body">

@@ -82,7 +82,7 @@
         </div>
         
         <div class="d-flex justify-content-center">
-            {{ $enrolledCourses->links() }}
+            {{ $enrolledCourses->links('pagination::bootstrap-4') }}
         </div>
     @else
         <div class="text-center py-5">
@@ -117,4 +117,4 @@
     background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
 }
 </style>
-@endsection 
+@endsection

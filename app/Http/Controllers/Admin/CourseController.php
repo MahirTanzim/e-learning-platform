@@ -42,15 +42,35 @@ class CourseController extends Controller
     public function update(Request $request, Course $course)
     {
         $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
             'status' => 'required|in:draft,published,archived',
+            'video' => 'nullable|file|mimes:mp4,mov,avi|max:10240',
         ]);
 
+        // Update course details
         $course->update([
+            'title' => $request->title,
+            'description' => $request->description,
             'status' => $request->status,
         ]);
 
+        // Handle video upload
+        if ($request->hasFile('video')) {
+            // Delete old video if exists
+            foreach ($course->videos as $video) {
+                if ($video->video_url) {
+                    Storage::disk('public')->delete($video->video_url);
+                }
+            }
+
+            // Store new video
+            $path = $request->file('video')->store('videos', 'public');
+            $course->videos()->create(['video_url' => $path]);
+        }
+
         return redirect()->route('admin.courses.show', $course)
-                        ->with('success', 'Course status updated successfully!');
+                        ->with('success', 'Course updated successfully!');
     }
 
     public function destroy(Course $course)
