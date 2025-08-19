@@ -48,6 +48,7 @@ Route::middleware(['auth'])->group(function () {
         
         // Course Routes
         Route::get('/courses', [StudentCourseController::class, 'index'])->name('courses.index');
+        Route::get('/courses/{course}/preview', [StudentCourseController::class, 'preview'])->name('courses.preview');
         Route::get('/courses/{course}/payment', [PaymentController::class, 'showPaymentForm'])->name('courses.payment');
         Route::post('/courses/{course}/payment', [PaymentController::class, 'processPayment'])->name('courses.process-payment');
         Route::get('/courses/{course}', [StudentCourseController::class, 'show'])
@@ -93,6 +94,7 @@ Route::middleware(['auth'])->group(function () {
             // Video Routes
             Route::get('/courses/{course}/modules/{module}/videos/create', [TeacherCourseController::class, 'createVideo'])->name('courses.videos.create');
             Route::post('/courses/{course}/modules/{module}/videos', [TeacherCourseController::class, 'storeVideo'])->name('courses.videos.store');
+            Route::get('/courses/{course}/modules/{module}/videos/{video}/edit', [TeacherCourseController::class, 'editVideo'])->name('courses.videos.edit');
             Route::patch('/courses/{course}/modules/{module}/videos/{video}', [TeacherCourseController::class, 'updateVideo'])->name('courses.videos.update');
             Route::delete('/courses/{course}/modules/{module}/videos/{video}', [TeacherCourseController::class, 'destroyVideo'])->name('courses.videos.destroy');
             

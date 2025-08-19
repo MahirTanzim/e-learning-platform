@@ -11,8 +11,7 @@ class HomeController extends Controller
 {
     public function index()
     {
-        $featuredCourses = Course::where('status', 'published')
-                                ->with(['teacher', 'category'])
+        $featuredCourses = Course::with(['teacher', 'category'])
                                 ->latest()
                                 ->limit(6)
                                 ->get();
@@ -37,8 +36,7 @@ class HomeController extends Controller
 
     public function courses()
     {
-        $courses = Course::where('status', 'published')
-                        ->with(['teacher', 'category'])
+        $courses = Course::with(['teacher', 'category'])
                         ->paginate(12);
 
         $categories = Category::all();
@@ -49,7 +47,6 @@ class HomeController extends Controller
     public function showCourse($slug)
     {
         $course = Course::where('slug', $slug)
-                       ->where('status', 'published')
                        ->with(['teacher', 'category', 'modules.videos', 'reviews.student'])
                        ->firstOrFail();
 

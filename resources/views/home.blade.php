@@ -110,7 +110,7 @@
                                     @endif
                                 </div>
                                 <div>
-                                    @for($i = 1; $i <= 5; $i++)
+                                    @for($i = 1; $i <= 6; $i++)
                                         @if($i <= $course->average_rating)
                                             <i class="fas fa-star text-warning"></i>
                                         @else
@@ -120,7 +120,7 @@
                                     <small class="text-muted ms-1">({{ $course->total_students }})</small>
                                 </div>
                             </div>
-                            <a href="{{ route('courses.show', $course->slug) }}" 
+                            <a href="{{ route('student.courses.preview', $course) }}" 
                                class="btn btn-primary mt-3">View Course</a>
                         </div>
                     </div>

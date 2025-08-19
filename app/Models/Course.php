@@ -76,7 +76,15 @@ class Course extends Model
 
     public function videos()
     {
-        return $this->hasManyThrough(Video::class, CourseModule::class);
+        // videos.module_id -> course_modules.id, course_modules.course_id -> courses.id
+        return $this->hasManyThrough(
+            Video::class,        // Related
+            CourseModule::class, // Through
+            'course_id',         // Foreign key on course_modules referencing courses
+            'module_id',         // Foreign key on videos referencing course_modules
+            'id',                // Local key on courses
+            'id'                 // Local key on course_modules
+        );
     }
 
     // Helper methods
