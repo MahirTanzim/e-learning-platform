@@ -4,6 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Support\Str;
 
 class BlogPost extends Model
 {
@@ -61,5 +62,10 @@ class BlogPost extends Model
     public function isLikedBy($userId)
     {
         return $this->likes()->where('user_id', $userId)->exists();
+    }
+
+    public function getExcerptAttribute()
+    {
+        return Str::limit(strip_tags($this->content), 200);
     }
 }

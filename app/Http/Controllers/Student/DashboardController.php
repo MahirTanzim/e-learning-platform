@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Student;
 use App\Http\Controllers\Controller;
 use App\Models\Course;
 use App\Models\User;
+use App\Models\BlogPost;
 
 class DashboardController extends Controller
 {
@@ -36,12 +37,20 @@ class DashboardController extends Controller
                               ->limit(4)
                               ->get();
 
+        // Add recent blog posts from teachers
+        $recentBlogPosts = BlogPost::where('status', 'published')
+                                  ->with(['teacher'])
+                                  ->latest()
+                                  ->limit(6)
+                                  ->get();
+
         return view('student.dashboard', compact(
             'enrolledCourses',
             'completedCourses', 
             'inProgressCourses',
             'followingTeachers',
-            'recentCourses'
+            'recentCourses',
+            'recentBlogPosts'
         ));
     }
 }

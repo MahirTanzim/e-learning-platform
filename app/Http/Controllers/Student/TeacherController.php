@@ -32,21 +32,17 @@ class TeacherController extends Controller
         $teacher->load([
             'profile',
             'courses' => function($query) {
-                $query->where('status', 'published')->with(['category']);
+                $query->with(['category', 'reviews'])->orderBy('created_at', 'desc');
             },
             'blogPosts' => function($query) {
-                $query->where('status', 'published')->latest()->limit(5);
+                $query->latest()->limit(5);
             }
         ]);
 
         $teacher->loadCount([
-            'courses' => function($query) {
-                $query->where('status', 'published');
-            },
+            'courses',
             'followers',
-            'blogPosts' => function($query) {
-                $query->where('status', 'published');
-            }
+            'blogPosts'
         ]);
 
         $isFollowing = auth()->check() && auth()->user()->isFollowing($teacher->id);

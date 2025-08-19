@@ -69,11 +69,15 @@
                                             name="status" 
                                             required>
                                         <option value="draft" {{ old('status') === 'draft' ? 'selected' : '' }}>Draft</option>
-                                        <option value="published" {{ old('status') === 'published' ? 'selected' : '' }}>Published</option>
+                                        <option value="published" {{ old('status') === 'published' ? 'selected' : (old('status') === null ? 'selected' : '') }}>Published</option>
                                     </select>
                                     @error('status')
                                         <div class="invalid-feedback">{{ $message }}</div>
                                     @enderror
+                                    <small class="form-text text-muted">
+                                        <strong>Draft:</strong> Only you can see this post<br>
+                                        <strong>Published:</strong> Students can see this post on the blog page
+                                    </small>
                                 </div>
 
                                 <div class="card bg-light">

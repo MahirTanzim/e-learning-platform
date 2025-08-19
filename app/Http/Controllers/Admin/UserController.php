@@ -41,6 +41,35 @@ class UserController extends Controller
         return view('admin.users.edit', compact('user'));
     }
 
+    public function store(Request $request)
+    {
+        $request->validate([
+            'name' => 'required|string|max:255',
+            'email' => 'required|string|email|max:255|unique:users',
+            'password' => 'required|string|min:8|confirmed',
+            'role' => 'required|in:student,teacher,admin',
+            'status' => 'required|in:active,inactive,suspended',
+            'avatar' => 'nullable|image|mimes:jpeg,png,jpg,gif|max:2048',
+        ]);
+
+        $avatarPath = null;
+        if ($request->hasFile('avatar')) {
+            $avatarPath = $request->file('avatar')->store('avatars', 'public');
+        }
+
+        $user = User::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'password' => bcrypt($request->password),
+            'role' => $request->role,
+            'status' => $request->status,
+            'avatar' => $avatarPath,
+        ]);
+
+        return redirect()->route('admin.users.show', $user)
+                        ->with('success', 'User created successfully!');
+    }
+
     public function update(Request $request, User $user)
     {
         $request->validate([

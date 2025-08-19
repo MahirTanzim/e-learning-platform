@@ -161,10 +161,10 @@
         </div>
     </div>
 
-    <!-- Recent Courses & Quick Actions -->
-    <div class="row">
+    <!-- Recent Courses & Blog Posts -->
+    <div class="row mb-4">
         <!-- Recent Courses -->
-        <div class="col-lg-8">
+        <div class="col-lg-6">
             <div class="card shadow">
                 <div class="card-header py-3">
                     <h6 class="m-0 font-weight-bold text-primary">Recently Added Courses</h6>
@@ -173,7 +173,7 @@
                     @if($recentCourses->count() > 0)
                         <div class="row">
                             @foreach($recentCourses as $course)
-                                <div class="col-md-6 mb-3">
+                                <div class="col-12 mb-3">
                                     <div class="d-flex">
                                         @if($course->thumbnail)
                                             <img src="{{ asset('storage/' . $course->thumbnail) }}" 
@@ -205,6 +205,43 @@
                 </div>
             </div>
         </div>
+
+        <!-- Recent Blog Posts -->
+        <div class="col-lg-6">
+            <div class="card shadow">
+                <div class="card-header py-3 d-flex justify-content-between align-items-center">
+                    <h6 class="m-0 font-weight-bold text-primary">Recent Blog Posts</h6>
+                    <a href="{{ route('blog.index') }}" class="btn btn-sm btn-primary">View All</a>
+                </div>
+                <div class="card-body">
+                    @if($recentBlogPosts->count() > 0)
+                        @foreach($recentBlogPosts as $post)
+                            <div class="mb-3 pb-3 border-bottom">
+                                <div class="d-flex align-items-center mb-2">
+                                    <img src="{{ $post->teacher->avatar_url }}" alt="{{ $post->teacher->name }}" 
+                                         class="rounded-circle me-2" style="width: 30px; height: 30px;">
+                                    <small class="text-muted">{{ $post->teacher->name }}</small>
+                                    <small class="text-muted ms-auto">{{ $post->created_at->format('M d') }}</small>
+                                </div>
+                                <h6 class="mb-1">
+                                    <a href="{{ route('blog.show', $post->slug) }}" class="text-decoration-none">
+                                        {{ Str::limit($post->title, 50) }}
+                                    </a>
+                                </h6>
+                                <p class="text-muted small mb-0">
+                                    {{ Str::limit(strip_tags($post->content), 80) }}
+                                </p>
+                            </div>
+                        @endforeach
+                    @else
+                        <div class="text-center py-4">
+                            <p class="text-muted">No blog posts available.</p>
+                        </div>
+                    @endif
+                </div>
+            </div>
+        </div>
+    </div>
 
         <!-- Quick Actions -->
         <div class="col-lg-4">
