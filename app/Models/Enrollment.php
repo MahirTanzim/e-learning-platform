@@ -15,11 +15,18 @@ class Enrollment extends Model
         'enrolled_at',
         'completed_at',
         'progress',
+        'payment_amount',
+        'payment_status',
+        'payment_method',
+        'transaction_id',
+        'payment_date',
     ];
 
     protected $casts = [
         'enrolled_at' => 'datetime',
         'completed_at' => 'datetime',
+        'payment_date' => 'datetime',
+        'payment_amount' => 'decimal:2',
     ];
 
     public function student()
