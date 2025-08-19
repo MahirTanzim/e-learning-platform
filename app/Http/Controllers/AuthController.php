@@ -20,14 +20,23 @@ class AuthController extends Controller
         $request->validate([
             'email' => 'required|email',
             'password' => 'required',
+            'role' => 'required|in:student,teacher,admin',
         ]);
 
         $credentials = $request->only('email', 'password');
 
         if (Auth::attempt($credentials, $request->remember)) {
             $user = Auth::user();
-            $user->update(['last_login_at' => now()]);
 
+            // Check if role matches
+            if ($user->role !== $request->role) {
+                Auth::logout();
+                return back()->withErrors([
+                    'role' => 'Selected role does not match your account.',
+                ])->onlyInput('email');
+            }
+
+            $user->update(['last_login_at' => now()]);
             $request->session()->regenerate();
 
             // Redirect based on role
@@ -69,10 +78,12 @@ class AuthController extends Controller
             'status' => 'active',
         ]);
 
-        // Create user profile
-        UserProfile::create([
-            'user_id' => $user->id,
-        ]);
+        // Create user profile if model exists
+        if (class_exists(UserProfile::class)) {
+            UserProfile::create([
+                'user_id' => $user->id,
+            ]);
+        }
 
         Auth::login($user);
 
