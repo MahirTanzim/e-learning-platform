@@ -120,7 +120,7 @@
                                     <small class="text-muted ms-1">({{ $course->total_students }})</small>
                                 </div>
                             </div>
-                            <a href="{{ route('courses.show', $course->slug) }}" 
+                            <a href="{{ route('student.courses.preview', $course) }}" 
                                class="btn btn-primary mt-3">View Course</a>
                         </div>
                     </div>
