@@ -22,6 +22,21 @@ class CourseController extends Controller
         return view('student.courses.index', compact('enrolledCourses'));
     }
 
+    public function preview(Course $course)
+    {
+        $course->load(['teacher', 'category', 'modules.videos']);
+        
+        $user = auth()->user();
+        $isEnrolled = $user->isEnrolledIn($course->id);
+        $enrollment = null;
+        
+        if ($isEnrolled) {
+            $enrollment = $user->enrollments()->where('course_id', $course->id)->first();
+        }
+
+        return view('student.courses.preview', compact('course', 'isEnrolled', 'enrollment'));
+    }
+
     public function enroll(Course $course)
     {
         $user = auth()->user();
