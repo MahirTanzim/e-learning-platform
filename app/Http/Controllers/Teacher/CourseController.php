@@ -45,6 +45,8 @@ class CourseController extends Controller
             'level' => 'required|in:beginner,intermediate,advanced',
             'prerequisites' => 'nullable|string',
             'certificate_available' => 'boolean',
+            'learning_outcomes' => 'nullable|string',
+            'requirements' => 'nullable|string',
         ]);
 
         $thumbnailPath = null;
@@ -124,11 +126,295 @@ class CourseController extends Controller
         if ($course->thumbnail) {
             Storage::disk('public')->delete($course->thumbnail);
         }
-
+        
         $course->delete();
 
         return redirect()->route('teacher.courses.index')
                         ->with('success', 'Course deleted successfully!');
     }
 
+    // Module Management
+    public function createModule(Course $course)
+    {
+        return view('teacher.courses.modules.create', compact('course'));
+    }
+
+    public function storeModule(Request $request, Course $course)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'order' => 'required|integer|min:1',
+        ]);
+
+        $course->modules()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'order' => $request->order,
+        ]);
+
+        return redirect()->route('teacher.courses.show', $course)
+                        ->with('success', 'Module created successfully!');
+    }
+
+    public function editModule(Course $course, CourseModule $module)
+    {
+        return view('teacher.courses.modules.edit', compact('course', 'module'));
+    }
+
+    public function updateModule(Request $request, Course $course, CourseModule $module)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'order' => 'required|integer|min:1',
+        ]);
+
+        $module->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'order' => $request->order,
+        ]);
+
+        return redirect()->route('teacher.courses.show', $course)
+                        ->with('success', 'Module updated successfully!');
+    }
+
+    public function destroyModule(Course $course, CourseModule $module)
+    {
+        $module->delete();
+
+        return redirect()->route('teacher.courses.show', $course)
+                        ->with('success', 'Module deleted successfully!');
+    }
+
+    // Video Management
+    public function createVideo(Course $course, CourseModule $module)
+    {
+        return view('teacher.courses.videos.create', compact('course', 'module'));
+    }
+
+    public function storeVideo(Request $request, Course $course, CourseModule $module)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'video' => 'required|mimes:mp4,avi,mov,wmv|max:102400', // 100MB max
+            'duration' => 'required|integer|min:1',
+            'order' => 'required|integer|min:1',
+            'is_free' => 'boolean',
+        ]);
+
+        $videoPath = $request->file('video')->store('course-videos', 'public');
+
+        $module->videos()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'video_url' => $videoPath,
+            'duration' => $request->duration,
+            'order' => $request->order,
+            'is_free' => $request->boolean('is_free'),
+        ]);
+
+        return redirect()->route('teacher.courses.show', $course)
+                        ->with('success', 'Video uploaded successfully!');
+    }
+
+    public function editVideo(Course $course, CourseModule $module, Video $video)
+    {
+        return view('teacher.courses.videos.edit', compact('course', 'module', 'video'));
+    }
+
+    public function updateVideo(Request $request, Course $course, CourseModule $module, Video $video)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'video' => 'nullable|mimes:mp4,avi,mov,wmv|max:102400',
+            'duration' => 'required|integer|min:1',
+            'order' => 'required|integer|min:1',
+            'is_free' => 'boolean',
+        ]);
+
+        $videoPath = $video->video_url;
+        if ($request->hasFile('video')) {
+            if ($videoPath) {
+                Storage::disk('public')->delete($videoPath);
+            }
+            $videoPath = $request->file('video')->store('course-videos', 'public');
+        }
+
+        $video->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'video_url' => $videoPath,
+            'duration' => $request->duration,
+            'order' => $request->order,
+            'is_free' => $request->boolean('is_free'),
+        ]);
+
+        return redirect()->route('teacher.courses.show', $course)
+                        ->with('success', 'Video updated successfully!');
+    }
+
+    public function destroyVideo(Course $course, CourseModule $module, Video $video)
+    {
+        if ($video->video_url) {
+            Storage::disk('public')->delete($video->video_url);
+        }
+        
+        $video->delete();
+
+        return redirect()->route('teacher.courses.show', $course)
+                        ->with('success', 'Video deleted successfully!');
+    }
+
+    // Quiz Management
+    public function createQuiz(Course $course)
+    {
+        return view('teacher.courses.quizzes.create', compact('course'));
+    }
+
+    public function storeQuiz(Request $request, Course $course)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'time_limit' => 'nullable|integer|min:1',
+            'total_marks' => 'required|integer|min:1',
+            'passing_marks' => 'required|integer|min:1',
+        ]);
+
+        $quiz = $course->quizzes()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'time_limit' => $request->time_limit,
+            'total_marks' => $request->total_marks,
+            'passing_marks' => $request->passing_marks,
+        ]);
+
+        return redirect()->route('teacher.courses.quizzes.show', [$course, $quiz])
+                        ->with('success', 'Quiz created successfully!');
+    }
+
+    public function showQuiz(Course $course, Quiz $quiz)
+    {
+        $quiz->load('questions.answers');
+        return view('teacher.courses.quizzes.show', compact('course', 'quiz'));
+    }
+
+    public function editQuiz(Course $course, Quiz $quiz)
+    {
+        return view('teacher.courses.quizzes.edit', compact('course', 'quiz'));
+    }
+
+    public function updateQuiz(Request $request, Course $course, Quiz $quiz)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'nullable|string',
+            'time_limit' => 'nullable|integer|min:1',
+            'total_marks' => 'required|integer|min:1',
+            'passing_marks' => 'required|integer|min:1',
+        ]);
+
+        $quiz->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'time_limit' => $request->time_limit,
+            'total_marks' => $request->total_marks,
+            'passing_marks' => $request->passing_marks,
+        ]);
+
+        return redirect()->route('teacher.courses.show', $course)
+                        ->with('success', 'Quiz updated successfully!');
+    }
+
+    public function destroyQuiz(Course $course, Quiz $quiz)
+    {
+        $quiz->delete();
+
+        return redirect()->route('teacher.courses.show', $course)
+                        ->with('success', 'Quiz deleted successfully!');
+    }
+
+    // Assignment Management
+    public function createAssignment(Course $course)
+    {
+        return view('teacher.courses.assignments.create', compact('course'));
+    }
+
+    public function storeAssignment(Request $request, Course $course)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'due_date' => 'required|date|after:now',
+            'total_marks' => 'required|integer|min:1',
+            'attachment' => 'nullable|file|mimes:pdf,doc,docx,txt|max:10240',
+        ]);
+
+        $attachmentPath = null;
+        if ($request->hasFile('attachment')) {
+            $attachmentPath = $request->file('attachment')->store('assignment-files', 'public');
+        }
+
+        $course->assignments()->create([
+            'title' => $request->title,
+            'description' => $request->description,
+            'due_date' => $request->due_date,
+            'total_marks' => $request->total_marks,
+            'attachment' => $attachmentPath,
+        ]);
+
+        return redirect()->route('teacher.courses.show', $course)
+                        ->with('success', 'Assignment created successfully!');
+    }
+
+    public function editAssignment(Course $course, Assignment $assignment)
+    {
+        return view('teacher.courses.assignments.edit', compact('course', 'assignment'));
+    }
+
+    public function updateAssignment(Request $request, Course $course, Assignment $assignment)
+    {
+        $request->validate([
+            'title' => 'required|string|max:255',
+            'description' => 'required|string',
+            'due_date' => 'required|date',
+            'total_marks' => 'required|integer|min:1',
+            'attachment' => 'nullable|file|mimes:pdf,doc,docx,txt|max:10240',
+        ]);
+
+        $attachmentPath = $assignment->attachment;
+        if ($request->hasFile('attachment')) {
+            if ($attachmentPath) {
+                Storage::disk('public')->delete($attachmentPath);
+            }
+            $attachmentPath = $request->file('attachment')->store('assignment-files', 'public');
+        }
+
+        $assignment->update([
+            'title' => $request->title,
+            'description' => $request->description,
+            'due_date' => $request->due_date,
+            'total_marks' => $request->total_marks,
+            'attachment' => $attachmentPath,
+        ]);
+
+        return redirect()->route('teacher.courses.show', $course)
+                        ->with('success', 'Assignment updated successfully!');
+    }
+
+    public function destroyAssignment(Course $course, Assignment $assignment)
+    {
+        if ($assignment->attachment) {
+            Storage::disk('public')->delete($assignment->attachment);
+        }
+        
+        $assignment->delete();
+
+        return redirect()->route('teacher.courses.show', $course)
+                        ->with('success', 'Assignment deleted successfully!');
+    }
 }

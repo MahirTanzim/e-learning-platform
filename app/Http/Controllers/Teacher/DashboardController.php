@@ -12,9 +12,8 @@ class DashboardController extends Controller
 {
     public function index()
     {
-
         $user = auth()->user();
-
+        
         // Basic statistics
         $totalCourses = $user->courses()->count();
         $totalStudents = $user->courses()->withCount('enrollments')->get()->sum('enrollments_count');
@@ -22,7 +21,7 @@ class DashboardController extends Controller
             return $course->enrollments->count() * $course->price;
         });
         $totalBlogPosts = $user->blogPosts()->count();
-
+        
         // Recent enrollments
         $recentEnrollments = Enrollment::whereHas('course', function($query) use ($user) {
             $query->where('teacher_id', $user->id);
@@ -31,7 +30,7 @@ class DashboardController extends Controller
         ->latest('enrolled_at')
         ->limit(10)
         ->get();
-
+        
         // Top performing courses
         $topCourses = $user->courses()
                           ->withCount('enrollments')
@@ -43,14 +42,14 @@ class DashboardController extends Controller
                               $course->total_revenue = $course->enrollments_count * $course->price;
                               return $course;
                           });
-
+        
         // My courses
         $myCourses = $user->courses()
                          ->with(['category', 'enrollments'])
                          ->latest()
                          ->limit(6)
                          ->get();
-
+        
         // Recent blog posts
         $recentBlogPosts = $user->blogPosts()
                                ->latest()
@@ -59,7 +58,7 @@ class DashboardController extends Controller
 
         return view('teacher.dashboard', compact(
             'totalCourses',
-            'totalStudents',
+            'totalStudents', 
             'totalRevenue',
             'totalBlogPosts',
             'recentEnrollments',
@@ -67,6 +66,5 @@ class DashboardController extends Controller
             'myCourses',
             'recentBlogPosts'
         ));
-
     }
 }
