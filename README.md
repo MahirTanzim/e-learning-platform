@@ -2,6 +2,9 @@
 
 A comprehensive Laravel-based e-learning platform that enables teachers to create and manage courses, students to enroll and learn, and administrators to oversee the entire system.
 
+[Demo_Video](https://drive.google.com/file/d/1LLXIaIbgjrwiEZAA4oihKrRXkRhsJAy3/view?usp=drive_link)
+[Report](https://drive.google.com/file/d/1qrQa6t42v2X_8_nxL81JGoP3bLVAanZ3/view?usp=drive_link)
+
 ## 🚀 Features
 
 ### For Students
